@@ -1,56 +1,36 @@
-//! # The Rust Standard Library
+//! # Rust标准库
 //!
-//! The Rust Standard Library is the foundation of portable Rust software, a
-//! set of minimal and battle-tested shared abstractions for the [broader Rust
-//! ecosystem][crates.io]. It offers core types, like [`Vec<T>`] and
-//! [`Option<T>`], library-defined [operations on language
-//! primitives](#primitives), [standard macros](#macros), [I/O] and
-//! [multithreading], among [many other things][other].
+//! Rust标准库是可移植Rust软件的基础，Rust软件是针对[更广泛的Rust生态系统][crates.io].的一组最小且经过测试的共享抽象. 它提供了诸如[`Vec<T>`] 和 [`Option<T>`]之类的核心
+//! 类型, 对[语言原语](#primitives)的库定义操作, [标准宏](#macros]),  [I/O] 和 [多线程], [等等][other].
 //!
-//! `std` is available to all Rust crates by default. Therefore, the
-//! standard library can be accessed in [`use`] statements through the path
-//! `std`, as in [`use std::env`].
+//! `Std`默认情况下可用于所有Rust库. 因此, 标准库可以在 [`use`] 语句 通过 std路径访问, 就像使用[`use std::env`]一样.
 //!
-//! # How to read this documentation
+//! # 如何阅读本文档
 //!
-//! If you already know the name of what you are looking for, the fastest way to
-//! find it is to use the <a href="#" onclick="focusSearchBar();">search
-//! bar</a> at the top of the page.
+//! 如果您已经知道要查找的名称，最快的查找方法是使用页面顶部的 <a href="#" onclick="focusSearchBar();">搜索栏 </a> .
 //!
-//! Otherwise, you may want to jump to one of these useful sections:
+//! 否则，您可能要跳到以下有用的部分之一：
 //!
-//! * [`std::*` modules](#modules)
-//! * [Primitive types](#primitives)
-//! * [Standard macros](#macros)
-//! * [The Rust Prelude](prelude/index.html)
+//! * [`std::*` 模块](#modules)
+//! * [原生类型](#primitives)
+//! * [标准宏](#macros)
+//! * [Rust前导](prelude/index.html)
 //!
-//! If this is your first time, the documentation for the standard library is
-//! written to be casually perused. Clicking on interesting things should
-//! generally lead you to interesting places. Still, there are important bits
-//! you don't want to miss, so read on for a tour of the standard library and
-//! its documentation!
+//! 如果这是您第一次来，那么标准库的文档随意阅读。单击有趣的事物通常会把您带到
+//! 有趣的地方。 尽管如此，您还是不想错过一些重要的内容，因此请继续阅读标准库及其文档！
 //!
-//! Once you are familiar with the contents of the standard library you may
-//! begin to find the verbosity of the prose distracting. At this stage in your
-//! development you may want to press the `[-]` button near the top of the
-//! page to collapse it into a more skimmable view.
+//! 一旦您熟悉了标准库的内容，您可能会发现散文使人分心。在开发的此阶段，您可能
+//! 需要按页面顶部附近的[-] 按钮以将其折叠为更可浏览的视图。
 //!
-//! While you are looking at that `[-]` button also notice the `[src]`
-//! button. Rust's API documentation comes with the source code and you are
-//! encouraged to read it. The standard library source is generally high
-//! quality and a peek behind the curtains is often enlightening.
+//! 当您查看该 `[-]`按钮时，也请注意该 `[src]`按钮。Rust的API文档带
+//! 有源代码，建议您阅读。标准库资源通常是高质量的，幕后的偷看常常会启发人 
 //!
-//! # What is in the standard library documentation?
+//! # 标准库文档中有什么？
 //!
-//! First of all, The Rust Standard Library is divided into a number of focused
-//! modules, [all listed further down this page](#modules). These modules are
-//! the bedrock upon which all of Rust is forged, and they have mighty names
-//! like [`std::slice`] and [`std::cmp`]. Modules' documentation typically
-//! includes an overview of the module along with examples, and are a smart
-//! place to start familiarizing yourself with the library.
+//! 首先，Rust标准库分为多个重点模块, [所有内容都在此页面的下方列出](#modules). 这些模块是所有Rus构造的基石.
+//! 它们的名称很强大，例如 [`std::slice`] and [`std::cmp`]. 模块的文档通常包括模块概述和示例，是开始熟悉该库的明智之地.
 //!
-//! Second, implicit methods on [primitive types] are documented here. This can
-//! be a source of confusion for two reasons:
+//! 其次，此处记录了 [原生类型]的隐式方法. 造成混淆的原因有两个：
 //!
 //! 1. While primitives are implemented by the compiler, the standard library
 //!    implements methods directly on the primitive types (and it is the only
@@ -191,9 +171,9 @@
 //! [crates.io]: https://crates.io
 //! [deref-coercions]: ../book/ch15-02-deref.html#implicit-deref-coercions-with-functions-and-methods
 //! [files]: fs/struct.File.html
-//! [multithreading]: thread/index.html
+//! [多线程]: thread/index.html
 //! [other]: #what-is-in-the-standard-library-documentation
-//! [primitive types]: ../book/ch03-02-data-types.html
+//! [原生类型]: ../book/ch03-02-data-types.html
 
 #![stable(feature = "rust1", since = "1.0.0")]
 #![doc(html_root_url = "https://doc.rust-lang.org/nightly/",
