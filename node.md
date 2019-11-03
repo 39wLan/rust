@@ -1,21 +1,10 @@
-# Add dirs
+# Local -> Remoto
 
-- src/tools/clippy
-- src/tools/rust-installer
-- src/tools/cargo
-- src/tools/rls
-- src/tools/rustfmt
-- src/tools/miri
-
-- src/stdarch
-
-## .git -> git.txt
-
-- src/tools/clippy/.git
-- src/tools/rust-installer/.git
-- src/tools/cargo/.git
-- src/tools/rls/.git
-- src/tools/rustfmt/.git
-- src/tools/miri/.git
-
-- src/stdarch/.git
+- gitdir: ../../.git/modules/src/stdarch -> gitdir: https://github.com/rust-lang/stdarch
+  
+- gitdir: ../../../.git/modules/src/tools/cargo -> gitdir: https://github.com/rust-lang/cargo
+- gitdir: ../../../.git/modules/src/tools/clippy -> gitdir: https://github.com/rust-lang/rust-clippy
+- gitdir: ../../../.git/modules/src/tools/miri -> gitdir: https://github.com/rust-lang/miri
+- gitdir: ../../../.git/modules/src/tools/rls -> gitdir: https://github.com/rust-lang/rls
+- gitdir: ../../../.git/modules/src/tools/rustfmt -> gitdir: https://github.com/rust-lang/rustfmt
+- gitdir: ../../../.git/modules/src/tools/rust-installer -> gitdir: https://github.com/rust-lang/rust-installer
