@@ -2,18 +2,15 @@
 #[doc(alias = "true")]
 #[doc(alias = "false")]
 //
-/// The boolean type.
+/// 布尔类型
 ///
-/// The `bool` represents a value, which could only be either `true` or `false`. If you cast
-/// a `bool` into an integer, `true` will be 1 and `false` will be 0.
+/// bool代表只能是任一`true`或`false`值。如果将 bool 转换为整数，true则为1, false将为0. 
 ///
-/// # Basic usage
+/// # 基本用法
 ///
-/// `bool` implements various traits, such as [`BitAnd`], [`BitOr`], [`Not`], etc.,
-/// which allow us to perform boolean operations using `&`, `|` and `!`.
+/// `bool` 实现各种特质,  如 [`BitAnd`], [`BitOr`], [`Not`],等等, 这允许我们执行布尔运算`&`, `|` 和 `!`.
 ///
-/// `if` always demands a `bool` value. [`assert!`], being an important macro in testing,
-/// checks whether an expression returns `true`.
+/// `if` 总是需要一个`bool` 值. [`assert!`], 作为测试中的重要宏,它检查表达式是否返回 `true`.
 ///
 /// ```
 /// let bool_val = true & false | false;
@@ -25,9 +22,9 @@
 /// [`BitOr`]: ops/trait.BitOr.html
 /// [`Not`]: ops/trait.Not.html
 ///
-/// # Examples
+/// # 示例
 ///
-/// A trivial example of the usage of `bool`,
+/// 一个简单的`bool`用法示例
 ///
 /// ```
 /// let praise_the_borrow_checker = true;
@@ -46,10 +43,9 @@
 /// }
 /// ```
 ///
-/// Also, since `bool` implements the [`Copy`](marker/trait.Copy.html) trait, we don't
-/// have to worry about the move semantics (just like the integer and float primitives).
+/// 另外，由于`bool`实现了 [`Copy`]  (marker/trait.Copy.html) 特质，因此我们不必担心移动语义（就像整数和浮点类型一样）。现在是bool
 ///
-/// Now an example of `bool` cast to integer type:
+/// `bool` 强制转换为整数类型的示例：
 ///
 /// ```
 /// assert_eq!(true as i32, 1);
@@ -61,7 +57,7 @@ mod prim_bool { }
 #[doc(primitive = "never")]
 #[doc(alias = "!")]
 //
-/// The `!` type, also called "never".
+///  `!` !类型，也被称为"永不"
 ///
 /// `!` represents the type of computations which never resolve to any value at all. For example,
 /// the [`exit`] function `fn exit(code: i32) -> !` exits the process without ever returning, and
@@ -489,7 +485,7 @@ mod prim_pointer { }
 /// You can move elements out of an array with a slice pattern. If you want
 /// one element, see [`mem::replace`][replace].
 ///
-/// # Examples
+/// # 示例
 ///
 /// ```
 /// let mut array: [i32; 3] = [0; 3];
@@ -607,7 +603,7 @@ mod prim_slice { }
 ///
 /// String slices are always valid UTF-8.
 ///
-/// # Examples
+/// # 示例
 ///
 /// String literals are string slices:
 ///
@@ -733,7 +729,7 @@ mod prim_str { }
 /// Due to a temporary restriction in Rust's type system, these traits are only
 /// implemented on tuples of arity 12 or less. In the future, this may change.
 ///
-/// # Examples
+/// # 示例
 ///
 /// Basic usage:
 ///

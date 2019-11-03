@@ -1,15 +1,13 @@
-//! Memory allocation APIs
+//!  内存分配APIs
 //!
-//! In a given program, the standard library has one “global” memory allocator
-//! that is used for example by `Box<T>` and `Vec<T>`.
+//! 在给定程序中分配内存，标准库具有一个“全局”内存分配器
+//! 例如由`Box<T>` 和`Vec<T>`Vec <T>使用
 //!
-//! Currently the default global allocator is unspecified. Libraries, however,
-//! like `cdylib`s and `staticlib`s are guaranteed to use the [`System`] by
-//! default.
+//! 当前默认的全局分配器未指定。 图书馆，但是，像`cdylib`和`staticlib`这样的默认情况下保证使用[`System`]分配器
 //!
 //! [`System`]: struct.System.html
 //!
-//! # The `#[global_allocator]` attribute
+//! # `#[global_allocator]` 属性
 //!
 //! This attribute allows configuring the choice of global allocator.
 //! You can use this to implement a completely custom global allocator
