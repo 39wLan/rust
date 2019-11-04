@@ -8,7 +8,7 @@
 //! use std::time::Duration;
 //!
 //! let five_seconds = Duration::new(5, 0);
-//! // both declarations are equivalent
+//! // 两种声明是等价的
 //! assert_eq!(Duration::new(5, 0), Duration::from_secs(5));
 //! ```
 
@@ -22,8 +22,7 @@ const NANOS_PER_MICRO: u32 = 1_000;
 const MILLIS_PER_SEC: u64 = 1_000;
 const MICROS_PER_SEC: u64 = 1_000_000;
 
-/// A `Duration` type to represent a span of time, typically used for system
-/// timeouts.
+/// `Duration` 类型用来表示时间段，特别是用作表示系统超时
 ///
 /// Each `Duration` is composed of a whole number of seconds and a fractional part
 /// represented in nanoseconds. If the underlying system does not support

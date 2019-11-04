@@ -6,7 +6,7 @@
 //! use std::time::Duration;
 //!
 //! let five_seconds = Duration::new(5, 0);
-//! // both declarations are equivalent
+//! // 两种声明是等价的
 //! assert_eq!(Duration::new(5, 0), Duration::from_secs(5));
 //! ```
 
@@ -23,8 +23,7 @@ use crate::sys_common::FromInner;
 #[stable(feature = "time", since = "1.3.0")]
 pub use core::time::Duration;
 
-/// A measurement of a monotonically nondecreasing clock.
-/// Opaque and useful only with `Duration`.
+/// 一种对单调不递减的时钟的量化。它是不透明的，只跟 `Duration` 在一起才有用处
 ///
 /// Instants are always guaranteed to be no less than any previously measured
 /// instant when created, and are often useful for tasks such as measuring
@@ -87,35 +86,24 @@ pub use core::time::Duration;
 #[stable(feature = "time2", since = "1.8.0")]
 pub struct Instant(time::Instant);
 
-/// A measurement of the system clock, useful for talking to
-/// external entities like the file system or other processes.
+/// 一种对系统时钟的量化，在跟外部实体，例如文件系统或者其他进程通信的时候很有用。
 ///
-/// Distinct from the [`Instant`] type, this time measurement **is not
-/// monotonic**. This means that you can save a file to the file system, then
-/// save another file to the file system, **and the second file has a
-/// `SystemTime` measurement earlier than the first**. In other words, an
-/// operation that happens after another operation in real time may have an
-/// earlier `SystemTime`!
+/// 与 [`Instant`] 类型不同，这个时间**不是单调的**。也就是说你可以在文件系统里保存一个文件，再保存另一个文件，然而第二个文件的 `SystemTime` 比
+/// 第一个早。换句话说，现实时间中比较晚发生的操作，可能有更早的`SystemTime`！
 ///
-/// Consequently, comparing two `SystemTime` instances to learn about the
-/// duration between them returns a [`Result`] instead of an infallible [`Duration`]
-/// to indicate that this sort of time drift may happen and needs to be handled.
+/// 因此，比较两个 `SystemTime` 实例，获得它们之间时间间距的时候，得到的不是一个可靠的 [`Duration`]，而是一个 [`Result`]，这表示需要要处理可能发生的时间漂移
 ///
-/// Although a `SystemTime` cannot be directly inspected, the [`UNIX_EPOCH`]
-/// constant is provided in this module as an anchor in time to learn
-/// information about a `SystemTime`. By calculating the duration from this
-/// fixed point in time, a `SystemTime` can be converted to a human-readable time,
-/// or perhaps some other string representation.
+/// 虽然 `SystemTime` 没法直接检视，但是这个模块提供了 [`UNIX_EPOCH `]作为时间锚点，可以用以了解一个 `SystemTime`。通过计算到
+/// 这个固定时间点的时间间隔， SystemTime 可以转换成人类可读的时间，或者一些时间的字符串表示
 ///
-/// The size of a `SystemTime` struct may vary depending on the target operating
-/// system.
+/// `SystemTime` 结构体所占的大小可能根据操作系统不同而变化
 ///
 /// [`Instant`]: ../../std/time/struct.Instant.html
 /// [`Result`]: ../../std/result/enum.Result.html
 /// [`Duration`]: ../../std/time/struct.Duration.html
 /// [`UNIX_EPOCH`]: ../../std/time/constant.UNIX_EPOCH.html
 ///
-/// Example:
+/// 例如 :
 ///
 /// ```no_run
 /// use std::time::{Duration, SystemTime};
@@ -164,9 +152,7 @@ pub struct Instant(time::Instant);
 #[stable(feature = "time2", since = "1.8.0")]
 pub struct SystemTime(time::SystemTime);
 
-/// An error returned from the `duration_since` and `elapsed` methods on
-/// `SystemTime`, used to learn how far in the opposite direction a system time
-/// lies.
+/// 一种从 `SystemTime` 的 `duration_since` 和 `elapsed` 方法返回的错误。用来表示系统时间在反方向上走了多远
 ///
 /// # Examples
 ///
@@ -397,14 +383,11 @@ impl fmt::Debug for Instant {
 }
 
 impl SystemTime {
-    /// An anchor in time which can be used to create new `SystemTime` instances or
-    /// learn about where in time a `SystemTime` lies.
+    /// 用来创建 `SystemTime` 的一个时间锚点，也用来了解一个 `SystemTime` 落在什么时间上
     ///
-    /// This constant is defined to be "1970-01-01 00:00:00 UTC" on all systems with
-    /// respect to the system clock. Using `duration_since` on an existing
-    /// `SystemTime` instance can tell how far away from this point in time a
-    /// measurement lies, and using `UNIX_EPOCH + duration` can be used to create a
-    /// `SystemTime` instance to represent another fixed point in time.
+    /// ///这个常量，在所有的系统上都定义为参照系统时钟的 “1970-01-01 00:00:00 UTC”。在一个现存
+    ///的 `SystemTime` 对象上用 `duration_since` 可以看出到此时间点有多远。`UNIX_EPOCH + duration` 可以
+    ///创建 `SystemTime` 实例，来表达另一个固定的时间点
     ///
     /// # Examples
     ///
@@ -588,18 +571,15 @@ impl fmt::Debug for SystemTime {
 pub const UNIX_EPOCH: SystemTime = SystemTime(time::UNIX_EPOCH);
 
 impl SystemTimeError {
-    /// Returns the positive duration which represents how far forward the
-    /// second system time was from the first.
+    /// 返回代表第二个系统时间到第一个系统时间经过的，正的时间段
     ///
-    /// A `SystemTimeError` is returned from the [`duration_since`] and [`elapsed`]
-    /// methods of [`SystemTime`] whenever the second system time represents a point later
-    /// in time than the `self` of the method call.
+    /// `SystemTimeError` 是从 [`SystemTime`] 的 [`duration_since`] 或者 [`elapsed`] 方法，在第二个系统时间比调用方法的 `self` 更晚的时候，返回的错误
     ///
     /// [`duration_since`]: ../../std/time/struct.SystemTime.html#method.duration_since
     /// [`elapsed`]: ../../std/time/struct.SystemTime.html#method.elapsed
     /// [`SystemTime`]: ../../std/time/struct.SystemTime.html
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```no_run
     /// use std::thread::sleep;
