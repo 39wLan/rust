@@ -1,6 +1,6 @@
 #![stable(feature = "duration_core", since = "1.25.0")]
 
-//! Temporal quantification.
+//! 时间量化
 //!
 //! Example:
 //!

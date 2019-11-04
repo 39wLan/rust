@@ -1,4 +1,4 @@
-//! Additional functionality for numerics.
+//! 数字的附加功能
 //!
 //! This module provides some extra types that are useful when doing numerical
 //! work. See the individual documentation for each piece for more information.

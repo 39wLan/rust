@@ -1,4 +1,4 @@
-//! Error handling with the `Result` type.
+//! `Result` 类型错误处理
 //!
 //! [`Result<T, E>`][`Result`] is the type used for returning and propagating
 //! errors. It is an enum with the variants, [`Ok(T)`], representing

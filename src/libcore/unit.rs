@@ -1,6 +1,6 @@
 use crate::iter::FromIterator;
 
-/// Collapses all unit items from an iterator into one.
+/// 将迭代器所有项折叠为一个。
 ///
 /// This is more useful when combined with higher-level abstractions, like
 /// collecting to a `Result<(), E>` where you only care about errors:

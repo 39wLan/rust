@@ -1,4 +1,4 @@
-//! Traits for conversions between types.
+//! 类型之间转换的特质
 //!
 //! The traits in this module provide a way to convert from one type to another type.
 //! Each trait serves a different purpose:

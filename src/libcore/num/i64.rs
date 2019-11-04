@@ -1,4 +1,4 @@
-//! The 64-bit signed integer type.
+//! 64位带符号整数类型
 //!
 //! *[See also the `i64` primitive type](../../std/primitive.i64.html).*
 

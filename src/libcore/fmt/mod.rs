@@ -1,4 +1,4 @@
-//! Utilities for formatting and printing strings.
+//! 格式化和打印 String的实用工具
 
 #![stable(feature = "rust1", since = "1.0.0")]
 

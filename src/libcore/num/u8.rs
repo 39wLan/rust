@@ -1,4 +1,4 @@
-//! The 8-bit unsigned integer type.
+//! 8位无符号整数类型
 //!
 //! *[See also the `u8` primitive type](../../std/primitive.u8.html).*
 

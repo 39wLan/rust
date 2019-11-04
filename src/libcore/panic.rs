@@ -1,4 +1,4 @@
-//! Panic support in the standard library.
+//! 标准库中的恐慌/故障支持
 
 #![unstable(feature = "core_panic_info",
             reason = "newly available in libcore",

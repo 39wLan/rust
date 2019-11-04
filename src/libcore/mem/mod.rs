@@ -1,4 +1,4 @@
-//! Basic functions for dealing with memory.
+//! 处理内存的基本功能
 //!
 //! This module contains functions for querying the size and alignment of
 //! types, initializing and manipulating memory.

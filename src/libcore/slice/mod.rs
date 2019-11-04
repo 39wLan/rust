@@ -1,6 +1,6 @@
 // ignore-tidy-filelength
 
-//! Slice management and manipulation.
+//! 切片管理和操作
 //!
 //! For more details see [`std::slice`].
 //!

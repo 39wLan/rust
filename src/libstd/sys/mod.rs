@@ -1,4 +1,4 @@
-//! Platform-dependent platform abstraction.
+//! 平台相关的平台抽象
 //!
 //! The `std::sys` module is the abstracted interface through which
 //! `std` talks to the underlying operating system. It has different

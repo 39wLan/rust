@@ -1,6 +1,6 @@
 #[doc(keyword = "as")]
 //
-/// Cast between types, or rename an import.
+/// 类型间转换，或重命名导入
 ///
 /// `as` is most commonly used to turn primitive types into other primitive types, but it has other
 /// uses that include turning pointers into addresses, addresses into pointers, and pointers into
@@ -25,13 +25,13 @@
 ///
 /// For more information on what `as` is capable of, see the [Reference]
 ///
-/// [Reference]: ../reference/expressions/operator-expr.html#type-cast-expressions
+/// [Reference]: https://doc.rust-lang.org/reference/expressions/operator-expr.html#type-cast-expressions
 /// [`crate`]: keyword.crate.html
 mod as_keyword { }
 
 #[doc(keyword = "break")]
 //
-/// Exit early from a loop.
+/// 从循环中提前退出
 ///
 /// When `break` is encountered, execution of the associated loop body is
 /// immediately terminated.
@@ -95,15 +95,15 @@ mod as_keyword { }
 /// For more details consult the [Reference on "break expression"] and the [Reference on "break and
 /// loop values"].
 ///
-/// [Reference on "break expression"]: ../reference/expressions/loop-expr.html#break-expressions
+/// [Reference on "break expression"]: https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions
 /// [Reference on "break and loop values"]:
-/// ../reference/expressions/loop-expr.html#break-and-loop-values
+/// https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-and-loop-values
 ///
 mod break_keyword { }
 
 #[doc(keyword = "const")]
 //
-/// Compile-time constants and deterministic functions.
+/// 编译时常量和确定性函数
 ///
 /// Sometimes a certain value is used many times throughout a program, and it can become
 /// inconvenient to copy it over and over. What's more, it's not always possible or desirable to
@@ -151,13 +151,13 @@ mod break_keyword { }
 ///
 /// [pointer]: primitive.pointer.html
 /// [Rust Book]:
-/// ../book/ch03-01-variables-and-mutability.html#differences-between-variables-and-constants
-/// [Reference]: ../reference/items/constant-items.html
+/// https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html#differences-between-variables-and-constants
+/// [Reference]: https://doc.rust-lang.org/reference/items/constant-items.html
 mod const_keyword { }
 
 #[doc(keyword = "continue")]
 //
-/// Skip to the next iteration of a loop.
+/// 跳到循环的下一个迭代
 ///
 /// When `continue` is encountered, the current iteration is terminated, returning control to the
 /// loop head, typically continuing with the next iteration.
@@ -192,12 +192,12 @@ mod const_keyword { }
 ///
 /// See [continue expressions] from the reference for more details.
 ///
-/// [continue expressions]: ../reference/expressions/loop-expr.html#continue-expressions
+/// [continue expressions]: https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions
 mod continue_keyword { }
 
 #[doc(keyword = "crate")]
 //
-/// A Rust binary or library.
+/// Rust二进制文件或库
 ///
 /// The primary use of the `crate` keyword is as a part of `extern crate` declarations, which are
 /// used to specify a dependency on a crate external to the one it's declared in. Crates are the
@@ -229,12 +229,12 @@ mod continue_keyword { }
 /// root of the current crate. For instance, `crate::foo::bar` refers to the name `bar` inside the
 /// module `foo`, from anywhere else in the same crate.
 ///
-/// [Reference]: ../reference/items/extern-crates.html
+/// [Reference]: https://doc.rust-lang.org/reference/items/extern-crates.html
 mod crate_keyword { }
 
 #[doc(keyword = "else")]
 //
-/// What to do when an [`if`] condition does not hold.
+/// 当[`if`]  条件不成立时该怎么办
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -244,7 +244,7 @@ mod else_keyword { }
 
 #[doc(keyword = "enum")]
 //
-/// A type that can be any one of several variants.
+/// 一种类型，可以是多种变体中的任何一种
 ///
 /// Enums in Rust are similar to those of other compiled languages like C, but have important
 /// differences that make them considerably more powerful. What Rust calls enums are more commonly
@@ -294,13 +294,13 @@ mod else_keyword { }
 ///
 /// [ADT]: https://en.wikipedia.org/wiki/Algebraic_data_type
 /// [`Option`]: option/enum.Option.html
-/// [Rust Book]: ../book/ch06-01-defining-an-enum.html
-/// [Reference]: ../reference/items/enumerations.html
+/// [Rust Book]: https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html
+/// [Reference]: https://doc.rust-lang.org/reference/items/enumerations.html
 mod enum_keyword { }
 
 #[doc(keyword = "extern")]
 //
-/// Link to or import external code.
+/// 链接到或导入外部代码
 ///
 /// The `extern` keyword is used in two places in Rust. One is in conjunction with the [`crate`]
 /// keyword to make your Rust code aware of other Rust crates in your project, i.e., `extern crate
@@ -336,13 +336,13 @@ mod enum_keyword { }
 /// For more information on FFI, check the [Rust book] or the [Reference].
 ///
 /// [Rust book]:
-/// ../book/ch19-01-unsafe-rust.html#using-extern-functions-to-call-external-code
-/// [Reference]: ../reference/items/external-blocks.html
+/// https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html#using-extern-functions-to-call-external-code
+/// [Reference]: https://doc.rust-lang.org/reference/items/external-blocks.html
 mod extern_keyword { }
 
 #[doc(keyword = "false")]
 //
-/// A value of type [`bool`] representing logical **false**.
+/// 一个[`bool`] 表示逻辑 **false**的类型的值
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -352,7 +352,7 @@ mod false_keyword { }
 
 #[doc(keyword = "fn")]
 //
-/// A function or function pointer.
+/// 函数或函数指针
 ///
 /// Functions are the primary way code is executed within Rust. Function blocks, usually just
 /// called functions, can be defined in a variety of different places and be assigned many
@@ -413,8 +413,8 @@ mod false_keyword { }
 ///
 /// [`impl`]: keyword.impl.html
 /// [`extern`]: keyword.extern.html
-/// [Rust book]: ../book/ch03-03-how-functions-work.html
-/// [Reference]: ../reference/items/functions.html
+/// [Rust book]: https://doc.rust-lang.org/book/ch03-03-how-functions-work.html
+/// [Reference]: https://doc.rust-lang.org/reference/items/functions.html
 mod fn_keyword { }
 
 #[doc(keyword = "for")]
@@ -489,16 +489,16 @@ mod fn_keyword { }
 ///
 /// [`in`]: keyword.in.html
 /// [`impl`]: keyword.impl.html
-/// [higher-ranked trait bounds]: ../reference/trait-bounds.html#higher-ranked-trait-bounds
+/// [higher-ranked trait bounds]: https://doc.rust-lang.org/reference/trait-bounds.html#higher-ranked-trait-bounds
 /// [`IntoIterator`]: iter/trait.IntoIterator.html
 /// [Rust book]:
-/// ../book/ch03-05-control-flow.html#looping-through-a-collection-with-for
-/// [Reference]: ../reference/expressions/loop-expr.html#iterator-loops
+/// https://doc.rust-lang.org/book/ch03-05-control-flow.html#looping-through-a-collection-with-for
+/// [Reference]: https://doc.rust-lang.org/reference/expressions/loop-expr.html#iterator-loops
 mod for_keyword { }
 
 #[doc(keyword = "if")]
 //
-/// Evaluate a block if a condition holds.
+/// 如果条件成立，则执行块
 ///
 /// `if` is a familiar construct to most programmers, and is the main way you'll often do logic in
 /// your code. However, unlike in most languages, `if` blocks can also act as expressions.
@@ -566,13 +566,13 @@ mod for_keyword { }
 ///
 /// For more information on `if` expressions, see the [Rust book] or the [Reference].
 ///
-/// [Rust book]: ../book/ch03-05-control-flow.html#if-expressions
-/// [Reference]: ../reference/expressions/if-expr.html
+/// [Rust book]: https://doc.rust-lang.org/book/ch03-05-control-flow.html#if-expressions
+/// [Reference]: https://doc.rust-lang.org/reference/expressions/if-expr.html
 mod if_keyword { }
 
 #[doc(keyword = "impl")]
 //
-/// Implement some functionality for a type.
+/// 为类型实现一些功能
 ///
 /// The `impl` keyword is primarily used to define implementations on types. Inherent
 /// implementations are standalone, while trait implementations are used to implement traits for
@@ -628,14 +628,14 @@ mod if_keyword { }
 ///
 /// For more information on `impl Trait` syntax, see the [Rust book][book2].
 ///
-/// [book1]: ../book/ch05-03-method-syntax.html
-/// [Reference]: ../reference/items/implementations.html
-/// [book2]: ../book/ch10-02-traits.html#returning-types-that-implement-traits
+/// [book1]: https://doc.rust-lang.org/book/ch05-03-method-syntax.html
+/// [Reference]: https://doc.rust-lang.org/reference/items/implementations.html
+/// [book2]: https://doc.rust-lang.org/book/ch10-02-traits.html#returning-types-that-implement-traits
 mod impl_keyword { }
 
 #[doc(keyword = "in")]
 //
-/// Iterate over a series of values with [`for`].
+/// 与[`for`]使用迭代一系列值
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -645,7 +645,7 @@ mod in_keyword { }
 
 #[doc(keyword = "let")]
 //
-/// Bind a value to a variable.
+/// 将值绑定到变量
 ///
 /// The primary use for the `let` keyword is in `let` statements, which are used to introduce a new
 /// set of variables into the current scope, as given by a pattern.
@@ -700,15 +700,15 @@ mod in_keyword { }
 ///
 /// For more information on the `let` keyword, see the [Rust book][book2] or the [Reference]
 ///
-/// [book1]: ../book/ch06-02-match.html
+/// [book1]: https://doc.rust-lang.org/book/ch06-02-match.html
 /// [`if`]: keyword.if.html
-/// [book2]: ../book/ch18-01-all-the-places-for-patterns.html#let-statements
-/// [Reference]: ../reference/statements.html#let-statements
+/// [book2]: https://doc.rust-lang.org/book/ch18-01-all-the-places-for-patterns.html#let-statements
+/// [Reference]: https://doc.rust-lang.org/reference/statements.html#let-statements
 mod let_keyword { }
 
 #[doc(keyword = "while")]
 //
-/// Loop while a condition is upheld.
+/// 符合条件时循环
 ///
 /// A `while` expression is used for predicate loops. The `while` expression runs the conditional
 /// expression before running the loop body, then runs the loop body if the conditional
@@ -759,12 +759,12 @@ mod let_keyword { }
 ///
 /// [`for`]: keyword.for.html
 /// [`loop`]: keyword.loop.html
-/// [reference]: ../reference/expressions/loop-expr.html#predicate-loops
+/// [reference]: https://doc.rust-lang.org/reference/expressions/loop-expr.html#predicate-loops
 mod while_keyword { }
 
 #[doc(keyword = "loop")]
 //
-/// Loop indefinitely.
+/// 无限循环
 ///
 /// `loop` is used to define the simplest kind of loop supported in Rust. It runs the code inside
 /// it until the code uses `break` or the program exits.
@@ -805,12 +805,12 @@ mod while_keyword { }
 ///
 /// For more information on `loop` and loops in general, see the [Reference].
 ///
-/// [Reference]: ../reference/expressions/loop-expr.html
+/// [Reference]: https://doc.rust-lang.org/reference/expressions/loop-expr.html
 mod loop_keyword { }
 
 #[doc(keyword = "match")]
 //
-/// Control flow based on pattern matching.
+/// 基于模式匹配的控制流
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -819,27 +819,27 @@ mod match_keyword { }
 
 #[doc(keyword = "mod")]
 //
-/// Organize code into [modules].
+/// 将代码组织到[模块]中.
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [modules]: ../reference/items/modules.html
+/// [模块]: https://doc.rust-lang.org/reference/items/modules.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod mod_keyword { }
 
 #[doc(keyword = "move")]
 //
-/// Capture a [closure]'s environment by value.
+/// 通过值捕获[闭包]环境
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [closure]: ../book/second-edition/ch13-01-closures.html
+/// [闭包]: https://doc.rust-lang.org/book/second-edition/ch13-01-closures.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod move_keyword { }
 
 #[doc(keyword = "mut")]
 //
-/// A mutable binding, reference, or pointer.
+/// 可变的绑定，引用或指针
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -848,7 +848,7 @@ mod mut_keyword { }
 
 #[doc(keyword = "pub")]
 //
-/// Make an item visible to others.
+/// 使其可见
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -857,7 +857,7 @@ mod pub_keyword { }
 
 #[doc(keyword = "ref")]
 //
-/// Bind by reference during pattern matching.
+/// 在模式匹配期间按引用绑定
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -866,7 +866,7 @@ mod ref_keyword { }
 
 #[doc(keyword = "return")]
 //
-/// Return a value from a function.
+/// 从函数返回值
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -875,7 +875,7 @@ mod return_keyword { }
 
 #[doc(keyword = "self")]
 //
-/// The receiver of a method, or the current module.
+/// 方法的接收者，或当前模块
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -884,8 +884,7 @@ mod self_keyword { }
 
 #[doc(keyword = "Self")]
 //
-/// The implementing type within a [`trait`] or [`impl`] block, or the current type within a type
-/// definition.
+/// 含有[`trait`]  或 [`impl`]  块的实现类型, 或含有类型定义的当前类型
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -896,7 +895,7 @@ mod self_upper_keyword { }
 
 #[doc(keyword = "static")]
 //
-/// A place that is valid for the duration of a program.
+/// 在程序期间有效。
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -905,7 +904,7 @@ mod static_keyword { }
 
 #[doc(keyword = "struct")]
 //
-/// A type that is composed of other types.
+/// 由其他类型组成的类型
 ///
 /// Structs in Rust come in three flavors: Structs with named fields, tuple structs, and unit
 /// structs.
@@ -1007,23 +1006,23 @@ mod static_keyword { }
 /// [Reference][reference].
 ///
 /// [`PhantomData`]: marker/struct.PhantomData.html
-/// [book]: ../book/ch05-01-defining-structs.html
-/// [reference]: ../reference/items/structs.html
+/// [book]: https://doc.rust-lang.org/book/ch05-01-defining-structs.html
+/// [reference]: https://doc.rust-lang.org/reference/items/structs.html
 mod struct_keyword { }
 
 #[doc(keyword = "super")]
 //
-/// The parent of the current [module].
+/// 当前[模块]的父级
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [module]: ../reference/items/modules.html
+/// [模块]: https://doc.rust-lang.org/reference/items/modules.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod super_keyword { }
 
 #[doc(keyword = "trait")]
 //
-/// A common interface for a class of types.
+/// 一类类型的通用接口
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1032,7 +1031,7 @@ mod trait_keyword { }
 
 #[doc(keyword = "true")]
 //
-/// A value of type [`bool`] representing logical **true**.
+/// 一个 [`bool`] 表示逻辑 **true**的类型的值
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1042,7 +1041,7 @@ mod true_keyword { }
 
 #[doc(keyword = "type")]
 //
-/// Define an alias for an existing type.
+/// 为现有类型定义别名
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1051,17 +1050,17 @@ mod type_keyword { }
 
 #[doc(keyword = "unsafe")]
 //
-/// Code or interfaces whose [memory safety] cannot be verified by the type system.
+/// 类型系统无法验证其[内存安全] 性的代码或接口
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [memory safety]: ../book/ch19-01-unsafe-rust.html
+/// [内存安全]: https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod unsafe_keyword { }
 
 #[doc(keyword = "use")]
 //
-/// Import or rename items from other crates or modules.
+/// 从其他 `Crate` 或模块导入或重命名项
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1070,7 +1069,7 @@ mod use_keyword { }
 
 #[doc(keyword = "where")]
 //
-/// Add constraints that must be upheld to use an item.
+/// 添加使用项必须保持的约束。
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1081,7 +1080,7 @@ mod where_keyword { }
 
 #[doc(keyword = "async")]
 //
-/// Return a [`Future`] instead of blocking the current thread.
+/// 返回 [`Future`] 而不是阻塞当前线程
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1091,7 +1090,7 @@ mod async_keyword { }
 
 #[doc(keyword = "await")]
 //
-/// Suspend execution until the result of a [`Future`] is ready.
+/// 暂停执行，直到 [`Future`] 准备好结果
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
@@ -1101,20 +1100,20 @@ mod await_keyword { }
 
 #[doc(keyword = "dyn")]
 //
-/// Name the type of a [trait object].
+/// 	命名[特质对象]的类型
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [trait object]: ../book/ch17-02-trait-objects.html
+/// [特质对象]: https://doc.rust-lang.org/book/ch17-02-trait-objects.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod dyn_keyword { }
 
 #[doc(keyword = "union")]
 //
-/// The [Rust equivalent of a C-style union][union].
+/// Rust中相当于C风格的 [union].
 ///
 /// The documentation for this keyword is [not yet complete]. Pull requests welcome!
 ///
-/// [union]: ../reference/items/unions.html
+/// [union]: https://doc.rust-lang.org/reference/items/unions.html
 /// [not yet complete]: https://github.com/rust-lang/rust/issues/34601
 mod union_keyword { }

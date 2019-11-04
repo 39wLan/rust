@@ -1,4 +1,4 @@
-//! Support for capturing a stack backtrace of an OS thread
+//! 支持捕获OS线程的堆栈回溯
 //!
 //! This module contains the support necessary to capture a stack backtrace of a
 //! running OS thread from the OS thread itself. The `Backtrace` type supports

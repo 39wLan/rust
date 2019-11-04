@@ -1,4 +1,4 @@
-//! Memory allocation APIs
+//! 内存分配APIs
 
 #![stable(feature = "alloc_module", since = "1.28.0")]
 

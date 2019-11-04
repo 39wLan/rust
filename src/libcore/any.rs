@@ -1,5 +1,4 @@
-//! This module implements the `Any` trait, which enables dynamic typing
-//! of any `'static` type through runtime reflection.
+//! 该模块实现了`Any`特质，该特质允许通过运行时反射来动态键入任何`'static` 类型
 //!
 //! `Any` itself can be used to get a `TypeId`, and has more features when used
 //! as a trait object. As `&dyn Any` (a borrowed trait object), it has the `is`

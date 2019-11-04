@@ -1,4 +1,4 @@
-//! Shareable mutable containers.
+//! 共享可变容器
 //!
 //! Rust memory safety is based on this rule: Given an object `T`, it is only possible to
 //! have one of the following:

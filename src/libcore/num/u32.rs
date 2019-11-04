@@ -1,4 +1,4 @@
-//! The 32-bit unsigned integer type.
+//! 32位无符号整数类型
 //!
 //! *[See also the `u32` primitive type](../../std/primitive.u32.html).*
 

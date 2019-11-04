@@ -1,4 +1,4 @@
-//! Inspection and manipulation of the process's environment.
+//! 检查和管理进程的环境
 //!
 //! This module contains functions to inspect various aspects such as
 //! environment variables, process arguments, the current directory, and various

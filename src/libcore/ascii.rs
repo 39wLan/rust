@@ -1,4 +1,4 @@
-//! Operations on ASCII strings and characters.
+//! ASCII字符串和字符的操作
 //!
 //! Most string operations in Rust act on UTF-8 strings. However, at times it
 //! makes more sense to only consider the ASCII character set for a specific

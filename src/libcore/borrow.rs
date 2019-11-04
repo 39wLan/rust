@@ -1,4 +1,4 @@
-//! A module for working with borrowed data.
+//! 用于处理借入(`borrowed`)数据的模块
 
 #![stable(feature = "rust1", since = "1.0.0")]
 

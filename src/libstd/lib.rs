@@ -32,108 +32,68 @@
 //!
 //! 其次，此处记录了 [原生类型]的隐式方法. 造成混淆的原因有两个：
 //!
-//! 1. While primitives are implemented by the compiler, the standard library
-//!    implements methods directly on the primitive types (and it is the only
-//!    library that does so), which are [documented in the section on
-//!    primitives](#primitives).
-//! 2. The standard library exports many modules *with the same name as
-//!    primitive types*. These define additional items related to the primitive
-//!    type, but not the all-important methods.
+//! 1. 由编译器实现原语时，标准库直接在原生类型上实现方法(这是唯一这样做的库), 该方法在[原生类型](#primitives).部分中进行了介绍
+//! 2. 标准库导出了许多 与原生类型同名的模块,这些定义了与原生类型相关的其他项，但没有定义所有重要方法.
 //!
-//! So for example there is a [page for the primitive type
-//! `i32`](primitive.i32.html) that lists all the methods that can be called on
-//! 32-bit integers (very useful), and there is a [page for the module
-//! `std::i32`](i32/index.html) that documents the constant values [`MIN`] and
-//! [`MAX`](i32/constant.MAX.html) (rarely useful).
+//! 因此，例如 有一个[原始类型 `i32`](primitive.i32.html)  页面 , 列出了可以在32位整数上调用的所有方法 (非常有用), 而
+//! 有一个模块 [std::i32](i32/index.html) 页面, 记录了常量值 [`MIN`]和 [`MAX`](i32/constant.MAX.html)  (非常有用).
 //!
-//! Note the documentation for the primitives [`str`] and [`[T]`][slice] (also
-//! called 'slice'). Many method calls on [`String`] and [`Vec<T>`] are actually
-//! calls to methods on [`str`] and [`[T]`][slice] respectively, via [deref
-//! coercions][deref-coercions].
+//! 请注意原生[`str`]  和 [`T`](slice)(也称为 "切片" )的文档. 通过[deref.强制](deref-coercions)， 对[`String`] 和 [`Vec<T>`] 的许多方法调用实际上分别是对 [`str`] 和 [`T`](slice) 上的方法的调用.
 //!
-//! Third, the standard library defines [The Rust Prelude], a small collection
-//! of items - mostly traits - that are imported into every module of every
-//! crate. The traits in the prelude are pervasive, making the prelude
-//! documentation a good entry point to learning about the library.
+//! 第三，标准库定义了 [Rust前导], 这是一小部分项(主要是特质)的集合- 这些项被导入到每个 Crate 的每个模块中。前导中的特质无处不在，这使t前导文档成为学习标准库的一个很好的切入点
 //!
-//! And finally, the standard library exports a number of standard macros, and
-//! [lists them on this page](#macros) (technically, not all of the standard
-//! macros are defined by the standard library - some are defined by the
-//! compiler - but they are documented here the same). Like the prelude, the
-//! standard macros are imported by default into all crates.
+//! 最后，标准库导出许多标准宏，并[在此页上列出它们](#macros) (从技术上讲，并非所有标准宏都由标准库定义-有些是由编译器定义的，但与此处记录的内容相同) 像前导一样，默认情况下，标准宏会导入所有 Crate 中
 //!
-//! # Contributing changes to the documentation
+//! # 对文档进行更改
 //!
-//! Check out the rust contribution guidelines [here](
-//! https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md).
-//! The source for this documentation can be found on [Github](https://github.com/rust-lang).
-//! To contribute changes, make sure you read the guidelines first, then submit
-//! pull-requests for your suggested changes.
+//! 在[此处查看Rust贡献准则](https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md)。 该文档的源代码可以在[Github](https://github.com/rust-lang)上找到。要做出更改，请确保您先阅读准则，然后提交建议更改的请求。
 //!
-//! Contributions are appreciated! If you see a part of the docs that can be
-//! improved, submit a PR, or chat with us first on irc.mozilla.org #rust-docs.
+//!感谢您的贡献！如果您发现文档中的一部分可以改进，请提交PR, 或首先在irc.mozilla.org＃rust-docs上与我们交流.
 //!
-//! # A Tour of The Rust Standard Library
+//! # Rust标准库之旅
 //!
-//! The rest of this crate documentation is dedicated to pointing out notable
-//! features of The Rust Standard Library.
+//! 本文档的其余部分专用于说明Rust标准库的显着功能
+
 //!
-//! ## Containers and collections
+//! ## 容器和集合
 //!
-//! The [`option`] and [`result`] modules define optional and error-handling
-//! types, [`Option<T>`] and [`Result<T, E>`]. The [`iter`] module defines
-//! Rust's iterator trait, [`Iterator`], which works with the [`for`] loop to
-//! access collections.
+//!   [`option`] 和 [`result`] 模块定义可选和错误处理的类型 : [`Option<T>`] 和 [`Result<T, E>`].  [`iter`]  模块定义Rust的迭代器特质 [`Iterator`], 与[`for`] 循环一起使用以访问集合.
 //!
-//! The standard library exposes three common ways to deal with contiguous
-//! regions of memory:
+//! T标准库公开了三种处理内存连续区域的常用方法：
 //!
-//! * [`Vec<T>`] - A heap-allocated *vector* that is resizable at runtime.
-//! * [`[T; n]`][array] - An inline *array* with a fixed size at compile time.
-//! * [`[T]`][slice] - A dynamically sized *slice* into any other kind of contiguous
-//!   storage, whether heap-allocated or not.
+//! * [`Vec<T>`] - 在运行时可调整大小的堆分配向量/`vector`
+//! * [`[T; n]`][array] - 在编译时具有固定大小的内联数组
+//! * [`[T]`][slice] - 具有容纳动态大小切片的任何类型连续存储, 无论是否进行堆分配
 //!
-//! Slices can only be handled through some kind of *pointer*, and as such come
-//! in many flavors such as:
+//! 切片只能通过某种指针来处理，因此有多种形式，例如：
 //!
-//! * `&[T]` - *shared slice*
-//! * `&mut [T]` - *mutable slice*
-//! * [`Box<[T]>`][owned slice] - *owned slice*
+//! * `&[T]` - *共享切片*
+//! * `&mut [T]` - *可变切片*
+//! * [`Box<[T]>`][owned slice] - *拥有切片*
 //!
-//! [`str`], a UTF-8 string slice, is a primitive type, and the standard library
-//! defines many methods for it. Rust [`str`]s are typically accessed as
-//! immutable references: `&str`. Use the owned [`String`] for building and
-//! mutating strings.
+//! [`str`], UTF-8字符串切片是一种原始类型, 标准库为此定义了许多方法. Rust  [`str`]通常被当作不可变的引用:  `&str`来访问 . 使用拥有/`owned`  [`String`]来构造和可变字符串
 //!
-//! For converting to strings use the [`format!`] macro, and for converting from
-//! strings use the [`FromStr`] trait.
+//! 要转换为字符串，请使用 [`format!`] 宏；要从字符串转换，请使用 [`FromStr`] 特质.
 //!
-//! Data may be shared by placing it in a reference-counted box or the [`Rc`]
-//! type, and if further contained in a [`Cell`] or [`RefCell`], may be mutated
-//! as well as shared. Likewise, in a concurrent setting it is common to pair an
+//! 可以通过将数据放在引用计数 box 或 [`Rc`] 类型中来共享数据, 如果进一步包含在 [`Cell`] 或 [`RefCell`] ,则可以对其进行突变和共享.
+//! Likewise, in a concurrent setting it is common to pair an
 //! atomically-reference-counted box, [`Arc`], with a [`Mutex`] to get the same
 //! effect.
 //!
-//! The [`collections`] module defines maps, sets, linked lists and other
-//! typical collection types, including the common [`HashMap<K, V>`].
+//! 该[`collections`] 模块定义了 maps , sets , linked lists 和其他典型的集合类型，包括 [`HashMap<K, V>`].
 //!
-//! ## Platform abstractions and I/O
+//! ## 平台抽象和 I/O
 //!
-//! Besides basic data types, the standard library is largely concerned with
-//! abstracting over differences in common platforms, most notably Windows and
-//! Unix derivatives.
+//! 除了基本数据类型外，标准库还主要关注常见平台（尤其是Windows和Unix派生）中的差异的抽象
 //!
-//! Common types of I/O, including [files], [TCP], [UDP], are defined in the
-//! [`io`], [`fs`], and [`net`] modules.
+//! 常见类型的 I/O, 包括 [files], [TCP], [UDP], 在被定义在 [`io`], [`fs`], 和 [`net`] 模块.
 //!
-//! The [`thread`] module contains Rust's threading abstractions. [`sync`]
-//! contains further primitive shared memory types, including [`atomic`] and
-//! [`mpsc`], which contains the channel types for message passing.
+//! 该 [`thread`] 模块包含Rust的线程抽象. [`sync`] 进一步包含其他原始共享内存类型, 包括 [`atomic`] 和 [`mpsc`], 其中包含用于消息传递的通道类型.
 //!
 //! [I/O]: io/index.html
 //! [`MIN`]: i32/constant.MIN.html
 //! [TCP]: net/struct.TcpStream.html
-//! [The Rust Prelude]: prelude/index.html
+//! [Rust前导]: prelude/index.html
 //! [UDP]: net/struct.UdpSocket.html
 //! [`Arc`]: sync/struct.Arc.html
 //! [owned slice]: boxed/index.html
@@ -167,7 +127,7 @@
 //! [`sync`]: sync/index.html
 //! [`thread`]: thread/index.html
 //! [`use std::env`]: env/index.html
-//! [`use`]: ../book/ch07-02-defining-modules-to-control-scope-and-privacy.html
+//! [`use`]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 //! [crates.io]: https://crates.io
 //! [deref-coercions]: ../book/ch15-02-deref.html#implicit-deref-coercions-with-functions-and-methods
 //! [files]: fs/struct.File.html
@@ -337,10 +297,10 @@ extern crate cfg_if;
 #[macro_use]
 mod macros;
 
-// The Rust prelude
+//  Rust前导
 pub mod prelude;
 
-// Public module declarations and re-exports
+// 公开模块声明和重导出
 #[stable(feature = "rust1", since = "1.0.0")]
 pub use core::any;
 #[stable(feature = "simd_arch", since = "1.27.0")]

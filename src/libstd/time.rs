@@ -1,4 +1,4 @@
-//! Temporal quantification.
+//! 时间量化
 //!
 //! Example:
 //!

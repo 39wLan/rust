@@ -1,4 +1,4 @@
-//! Manually manage memory through raw pointers.
+//! 通过原始指针手动管理内存
 //!
 //! *[See also the pointer primitive types](../../std/primitive.pointer.html).*
 //!

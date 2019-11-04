@@ -1,4 +1,4 @@
-//! The 64-bit unsigned integer type.
+//! 64位无符号整数类型
 //!
 //! *[See also the `u64` primitive type](../../std/primitive.u64.html).*
 

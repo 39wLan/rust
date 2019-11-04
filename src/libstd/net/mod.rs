@@ -1,4 +1,4 @@
-//! Networking primitives for TCP/UDP communication.
+//! `TCP/UDP` 通信的网络原语
 //!
 //! This module provides networking functionality for the Transmission Control and User
 //! Datagram Protocols, as well as types for IP and socket addresses.

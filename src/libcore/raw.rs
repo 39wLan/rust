@@ -1,7 +1,7 @@
 #![allow(missing_docs)]
 #![unstable(feature = "raw", issue = "27751")]
 
-//! Contains struct definitions for the layout of compiler built-in types.
+//! 包含用于编译器内置类型布局的结构定义
 //!
 //! They can be used as targets of transmutes in unsafe code for manipulating
 //! the raw representations directly.

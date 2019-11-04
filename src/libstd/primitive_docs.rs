@@ -57,7 +57,7 @@ mod prim_bool { }
 #[doc(primitive = "never")]
 #[doc(alias = "!")]
 //
-///  `!` !类型，也被称为"永不"
+///  `!` 类型，也被称为"永不"
 ///
 /// `!` represents the type of computations which never resolve to any value at all. For example,
 /// the [`exit`] function `fn exit(code: i32) -> !` exits the process without ever returning, and
@@ -240,7 +240,7 @@ mod prim_never { }
 
 #[doc(primitive = "char")]
 //
-/// A character type.
+/// 字符类型
 ///
 /// The `char` type represents a single character. More specifically, since
 /// 'character' isn't a well-defined concept in Unicode, `char` is a '[Unicode
@@ -316,7 +316,7 @@ mod prim_char { }
 
 #[doc(primitive = "unit")]
 //
-/// The `()` type, sometimes called "unit" or "nil".
+/// `()` 类型，有时被称为"单元" 或 "无"
 ///
 /// The `()` type has exactly one value `()`, and is used when there
 /// is no other meaningful value that could be returned. `()` is most
@@ -354,7 +354,7 @@ mod prim_unit { }
 
 #[doc(primitive = "pointer")]
 //
-/// Raw, unsafe pointers, `*const T`, and `*mut T`.
+/// 	原始的，不安全的指针`*const T`, 和 `*mut T`.
 ///
 /// *[See also the `std::ptr` module](ptr/index.html).*
 ///
@@ -447,8 +447,7 @@ mod prim_pointer { }
 
 #[doc(primitive = "array")]
 //
-/// A fixed-size array, denoted `[T; N]`, for the element type, `T`, and the
-/// non-negative compile-time constant size, `N`.
+/// 一个固定大小的数组, 表示为`[T; N]`，即元素类型`T`, 和非负编译时常量`N`.
 ///
 /// There are two syntactic forms for creating an array:
 ///
@@ -560,8 +559,9 @@ mod prim_array { }
 #[doc(alias = "[")]
 #[doc(alias = "]")]
 #[doc(alias = "[]")]
-/// A dynamically-sized view into a contiguous sequence, `[T]`. Contiguous here
-/// means that elements are laid out so that every element is the same
+/// 具有动态尺寸视图的连续序列`[T]` 
+/// 
+/// Contiguous here means that elements are laid out so that every element is the same
 /// distance from its neighbors.
 ///
 /// *[See also the `std::slice` module](slice/index.html).*
@@ -593,7 +593,7 @@ mod prim_slice { }
 
 #[doc(primitive = "str")]
 //
-/// String slices.
+/// 字符切片
 ///
 /// *[See also the `std::str` module](str/index.html).*
 ///
@@ -661,7 +661,7 @@ mod prim_str { }
 #[doc(alias = ")")]
 #[doc(alias = "()")]
 //
-/// A finite heterogeneous sequence, `(T, U, ..)`.
+/// 有限的异构序列`(T, U, ..)`.
 ///
 /// Let's cover each of those in turn:
 ///
@@ -765,7 +765,7 @@ mod prim_str { }
 mod prim_tuple { }
 
 #[doc(primitive = "f32")]
-/// The 32-bit floating point type.
+/// 32位浮点类型
 ///
 /// *[See also the `std::f32` module](f32/index.html).*
 ///
@@ -774,7 +774,7 @@ mod prim_f32 { }
 
 #[doc(primitive = "f64")]
 //
-/// The 64-bit floating point type.
+/// 64位浮点类型
 ///
 /// *[See also the `std::f64` module](f64/index.html).*
 ///
@@ -783,7 +783,7 @@ mod prim_f64 { }
 
 #[doc(primitive = "i8")]
 //
-/// The 8-bit signed integer type.
+/// 8位带符号整数类型
 ///
 /// *[See also the `std::i8` module](i8/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -791,7 +791,7 @@ mod prim_i8 { }
 
 #[doc(primitive = "i16")]
 //
-/// The 16-bit signed integer type.
+/// 16位带符号整数类型
 ///
 /// *[See also the `std::i16` module](i16/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -799,7 +799,7 @@ mod prim_i16 { }
 
 #[doc(primitive = "i32")]
 //
-/// The 32-bit signed integer type.
+/// 32位带符号整数类型
 ///
 /// *[See also the `std::i32` module](i32/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -807,7 +807,7 @@ mod prim_i32 { }
 
 #[doc(primitive = "i64")]
 //
-/// The 64-bit signed integer type.
+/// 64位带符号整数类型
 ///
 /// *[See also the `std::i64` module](i64/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -815,7 +815,7 @@ mod prim_i64 { }
 
 #[doc(primitive = "i128")]
 //
-/// The 128-bit signed integer type.
+/// 128位带符号整数类型
 ///
 /// *[See also the `std::i128` module](i128/index.html).*
 #[stable(feature = "i128", since="1.26.0")]
@@ -823,7 +823,7 @@ mod prim_i128 { }
 
 #[doc(primitive = "u8")]
 //
-/// The 8-bit unsigned integer type.
+/// 8位无符号整数类型
 ///
 /// *[See also the `std::u8` module](u8/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -831,7 +831,7 @@ mod prim_u8 { }
 
 #[doc(primitive = "u16")]
 //
-/// The 16-bit unsigned integer type.
+/// 16位无符号整数类型
 ///
 /// *[See also the `std::u16` module](u16/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -839,7 +839,7 @@ mod prim_u16 { }
 
 #[doc(primitive = "u32")]
 //
-/// The 32-bit unsigned integer type.
+/// 32位无符号整数类型
 ///
 /// *[See also the `std::u32` module](u32/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -847,7 +847,7 @@ mod prim_u32 { }
 
 #[doc(primitive = "u64")]
 //
-/// The 64-bit unsigned integer type.
+/// 64位无符号整数类型
 ///
 /// *[See also the `std::u64` module](u64/index.html).*
 #[stable(feature = "rust1", since = "1.0.0")]
@@ -855,7 +855,7 @@ mod prim_u64 { }
 
 #[doc(primitive = "u128")]
 //
-/// The 128-bit unsigned integer type.
+/// 128位无符号整数类型
 ///
 /// *[See also the `std::u128` module](u128/index.html).*
 #[stable(feature = "i128", since="1.26.0")]
@@ -863,7 +863,7 @@ mod prim_u128 { }
 
 #[doc(primitive = "isize")]
 //
-/// The pointer-sized signed integer type.
+/// 指针大小的有符号整数类型
 ///
 /// *[See also the `std::isize` module](isize/index.html).*
 ///
@@ -875,7 +875,7 @@ mod prim_isize { }
 
 #[doc(primitive = "usize")]
 //
-/// The pointer-sized unsigned integer type.
+/// 指针大小的无符号整数类型
 ///
 /// *[See also the `std::usize` module](usize/index.html).*
 ///
@@ -888,7 +888,7 @@ mod prim_usize { }
 #[doc(primitive = "reference")]
 #[doc(alias = "&")]
 //
-/// References, both shared and mutable.
+/// 共享和可变引用
 ///
 /// A reference represents a borrow of some owned value. You can get one by using the `&` or `&mut`
 /// operators on a value, or by using a `ref` or `ref mut` pattern.
@@ -1034,7 +1034,7 @@ mod prim_ref { }
 
 #[doc(primitive = "fn")]
 //
-/// Function pointers, like `fn(usize) -> bool`.
+/// 函数指针，如  `fn(usize) -> bool`.
 ///
 /// *See also the traits [`Fn`], [`FnMut`], and [`FnOnce`].*
 ///

@@ -1,4 +1,4 @@
-/// An iterator whose items are random accessible efficiently
+/// 迭代器，其项可以有效地随机访问
 ///
 /// # Safety
 ///

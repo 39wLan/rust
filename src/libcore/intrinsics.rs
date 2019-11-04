@@ -1,4 +1,4 @@
-//! Compiler intrinsics.
+//! 编译器内在函数
 //!
 //! The corresponding definitions are in `librustc_codegen_llvm/intrinsic.rs`.
 //!

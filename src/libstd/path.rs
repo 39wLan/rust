@@ -1,6 +1,6 @@
 // ignore-tidy-filelength
 
-//! Cross-platform path manipulation.
+//! 跨平台路径操作
 //!
 //! This module provides two types, [`PathBuf`] and [`Path`][`Path`] (akin to [`String`]
 //! and [`str`]), for working with paths abstractly. These types are thin wrappers

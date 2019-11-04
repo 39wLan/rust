@@ -1,6 +1,4 @@
-//! Implementations of things like `Eq` for fixed-length arrays
-//! up to a certain length. Eventually we should able to generalize
-//! to all lengths.
+//! 定长数组的 `Eq` 之类的实现. 限制到一定长度。 最终我们应该能够扩展到所有长度。
 //!
 //! *[See also the array primitive type](../../std/primitive.array.html).*
 

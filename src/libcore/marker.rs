@@ -1,4 +1,4 @@
-//! Primitive traits and types representing basic properties of types.
+//! 原始特质和类型的类型基本属性表现
 //!
 //! Rust types can be classified in various useful ways according to
 //! their intrinsic properties. These classifications are represented

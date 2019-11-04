@@ -1,4 +1,4 @@
-//! Traits for working with Errors.
+//! 处理错误的特质
 
 #![stable(feature = "rust1", since = "1.0.0")]
 

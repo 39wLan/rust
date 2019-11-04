@@ -1,4 +1,4 @@
-//! Native threads.
+//! 原生线程
 //!
 //! ## The threading model
 //!

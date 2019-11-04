@@ -1,4 +1,4 @@
-//! Asynchronous values.
+//! 异步值
 
 use core::cell::Cell;
 use core::marker::Unpin;

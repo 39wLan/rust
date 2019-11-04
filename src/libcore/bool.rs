@@ -1,4 +1,4 @@
-//! impl bool {}
+//! 实现 bool {}
 
 #[lang = "bool"]
 impl bool {

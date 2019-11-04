@@ -1,6 +1,6 @@
 // ignore-tidy-filelength
 
-//! Numeric traits and functions for the built-in numeric types.
+//! 内置数字类型的数字特质和函数
 
 #![stable(feature = "rust1", since = "1.0.0")]
 

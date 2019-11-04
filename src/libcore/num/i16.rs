@@ -1,4 +1,4 @@
-//! The 16-bit signed integer type.
+//! 16位带符号整数类型
 //!
 //! *[See also the `i16` primitive type](../../std/primitive.i16.html).*
 

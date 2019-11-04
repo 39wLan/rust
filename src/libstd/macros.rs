@@ -1,4 +1,4 @@
-//! Standard library macros
+//! 标准宏
 //!
 //! This modules contains a set of macros which are exported from the standard
 //! library. Each macro is available for use when linking against the standard
@@ -70,7 +70,7 @@ macro_rules! panic {
     });
 }
 
-/// Prints to the standard output.
+/// 打印到标准输出
 ///
 /// Equivalent to the [`println!`] macro except that a newline is not printed at
 /// the end of the message.
@@ -116,7 +116,7 @@ macro_rules! print {
     ($($arg:tt)*) => ($crate::io::_print($crate::format_args!($($arg)*)));
 }
 
-/// Prints to the standard output, with a newline.
+/// 打印到标准错误并换行
 ///
 /// On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 /// (no additional CARRIAGE RETURN (`\r`/`U+000D`)).
@@ -151,7 +151,7 @@ macro_rules! println {
     })
 }
 
-/// Prints to the standard error.
+/// 打印到标准错误
 ///
 /// Equivalent to the [`print!`] macro, except that output goes to
 /// [`io::stderr`] instead of `io::stdout`. See [`print!`] for
@@ -179,7 +179,7 @@ macro_rules! eprint {
     ($($arg:tt)*) => ($crate::io::_eprint($crate::format_args!($($arg)*)));
 }
 
-/// Prints to the standard error, with a newline.
+/// 打印到标准错误并换行
 ///
 /// Equivalent to the [`println!`] macro, except that output goes to
 /// [`io::stderr`] instead of `io::stdout`. See [`println!`] for
@@ -210,8 +210,7 @@ macro_rules! eprintln {
     })
 }
 
-/// Prints and returns the value of a given expression for quick and dirty
-/// debugging.
+/// 打印并返回给定表达式的值，以进行快速和脏调试
 ///
 /// An example:
 ///

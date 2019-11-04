@@ -1,5 +1,4 @@
-//! This module provides constants which are specific to the implementation
-//! of the `f64` floating point data type.
+//! 该模块提供特定于`f64`浮点数据类型实现的常量
 //!
 //! *[See also the `f64` primitive type](../../std/primitive.f64.html).*
 //!

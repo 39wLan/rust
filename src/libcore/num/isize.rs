@@ -1,4 +1,4 @@
-//! The pointer-sized signed integer type.
+//! 指针大小的有符号整数类型
 //!
 //! *[See also the `isize` primitive type](../../std/primitive.isize.html).*
 

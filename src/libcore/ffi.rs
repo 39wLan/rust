@@ -2,7 +2,7 @@
 
 #![allow(non_camel_case_types)]
 
-//! Utilities related to FFI bindings.
+//! FFI绑定有关的实用工具
 
 use crate::fmt;
 use crate::marker::PhantomData;

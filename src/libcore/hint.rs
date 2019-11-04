@@ -1,6 +1,6 @@
 #![stable(feature = "core_hint", since = "1.27.0")]
 
-//! Hints to compiler that affects how code should be emitted or optimized.
+//! 对编译器的提示，该提示会影响应如何发出或优化代码
 
 use crate::intrinsics;
 

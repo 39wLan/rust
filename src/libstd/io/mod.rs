@@ -1,4 +1,4 @@
-//! Traits, helpers, and type definitions for core I/O functionality.
+//! 核心 I / O功能的特质，帮助程序和类型定义
 //!
 //! The `std::io` module contains a number of common things you'll need
 //! when doing input and output. The most core part of this module is

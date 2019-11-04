@@ -1,6 +1,6 @@
 // ignore-tidy-filelength
 
-//! String manipulation.
+//! 字符串操作
 //!
 //! For more details, see the `std::str` module.
 

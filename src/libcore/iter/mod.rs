@@ -1,4 +1,4 @@
-//! Composable external iteration.
+//! 可组合外部迭代
 //!
 //! If you've found yourself with a collection of some kind, and needed to
 //! perform an operation on the elements of said collection, you'll quickly run

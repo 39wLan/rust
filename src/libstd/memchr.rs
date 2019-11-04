@@ -1,7 +1,7 @@
 // Original implementation taken from rust-memchr.
 // Copyright 2015 Andrew Gallant, bluss and Nicolas Koch
 
-/// A safe interface to `memchr`.
+/// `memchr`的安全接口
 ///
 /// Returns the index corresponding to the first occurrence of `needle` in
 /// `haystack`, or `None` if one is not found.

@@ -1,4 +1,4 @@
-/// Panics the current thread.
+/// 恐慌/Panics当前线程
 ///
 /// For details, see `std::macros`.
 #[cfg(bootstrap)]
@@ -21,7 +21,7 @@ macro_rules! panic {
     });
 }
 
-/// Panics the current thread.
+/// 恐慌/Panics当前线程
 ///
 /// For details, see `std::macros`.
 #[cfg(not(bootstrap))]
@@ -53,7 +53,7 @@ macro_rules! panic {
     });
 }
 
-/// Asserts that two expressions are equal to each other (using [`PartialEq`]).
+/// 断言两个表达式彼此相等（使用 [`PartialEq`]）
 ///
 /// On panic, this macro will print the values of the expressions with their
 /// debug representations.
@@ -110,7 +110,7 @@ macro_rules! assert_eq {
     });
 }
 
-/// Asserts that two expressions are not equal to each other (using [`PartialEq`]).
+/// 断言两个表达式彼此不相等（使用[`PartialEq`]）
 ///
 /// On panic, this macro will print the values of the expressions with their
 /// debug representations.
@@ -167,7 +167,7 @@ macro_rules! assert_ne {
     });
 }
 
-/// Asserts that a boolean expression is `true` at runtime.
+/// 运行时断言布尔表达式在为 `true`
 ///
 /// This will invoke the [`panic!`] macro if the provided expression cannot be
 /// evaluated to `true` at runtime.
@@ -217,7 +217,7 @@ macro_rules! debug_assert {
     ($($arg:tt)*) => (if $crate::cfg!(debug_assertions) { $crate::assert!($($arg)*); })
 }
 
-/// Asserts that two expressions are equal to each other.
+/// 断言两个表达式彼此相等
 ///
 /// On panic, this macro will print the values of the expressions with their
 /// debug representations.
@@ -244,7 +244,7 @@ macro_rules! debug_assert_eq {
     ($($arg:tt)*) => (if $crate::cfg!(debug_assertions) { $crate::assert_eq!($($arg)*); })
 }
 
-/// Asserts that two expressions are not equal to each other.
+/// 断言两个表达式彼此不相等
 ///
 /// On panic, this macro will print the values of the expressions with their
 /// debug representations.
@@ -271,6 +271,7 @@ macro_rules! debug_assert_ne {
     ($($arg:tt)*) => (if $crate::cfg!(debug_assertions) { $crate::assert_ne!($($arg)*); })
 }
 
+/// 返回与任何给定模式匹配的表达式
 /// Returns whether the given expression matches any of the given patterns.
 ///
 /// Like in a `match` expression, the pattern can be optionally followed by `if`
@@ -298,7 +299,7 @@ macro_rules! matches {
     }
 }
 
-/// Unwraps a result or propagates its error.
+/// 展开`result`或传播其错误
 ///
 /// The `?` operator was added to replace `try!` and should be used instead.
 /// Furthermore, `try` is a reserved word in Rust 2018, so if you must use
@@ -374,7 +375,7 @@ macro_rules! r#try {
     ($expr:expr,) => ($crate::r#try!($expr));
 }
 
-/// Writes formatted data into a buffer.
+/// 将格式化的数据写入缓冲区
 ///
 /// This macro accepts a format string, a list of arguments, and a 'writer'. Arguments will be
 /// formatted according to the specified format string and the result will be passed to the writer.
@@ -449,7 +450,7 @@ macro_rules! write {
     ($dst:expr, $($arg:tt)*) => ($dst.write_fmt($crate::format_args!($($arg)*)))
 }
 
-/// Write formatted data into a buffer, with a newline appended.
+/// 将格式化的数据写入缓冲区并换行
 ///
 /// On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 /// (no additional CARRIAGE RETURN (`\r`/`U+000D`).
@@ -510,7 +511,7 @@ macro_rules! writeln {
     );
 }
 
-/// Indicates unreachable code.
+/// 表示无法访问的代码
 ///
 /// This is useful any time that the compiler can't determine that some code is unreachable. For
 /// example:
@@ -580,7 +581,7 @@ macro_rules! unreachable {
     });
 }
 
-/// Indicates unfinished code by panicking with a message of "not yet implemented".
+/// Panic并显示“尚未实现”信息，表示未完成的代码
 ///
 /// This allows the your code to type-check, which is useful if you are prototyping or
 /// implementing a trait that requires multiple methods which you don't plan of using all of.
@@ -657,7 +658,7 @@ macro_rules! unimplemented {
     ($($arg:tt)+) => (panic!("not yet implemented: {}", $crate::format_args!($($arg)+)));
 }
 
-/// Indicates unfinished code.
+/// 表示未完成的代码
 ///
 /// This can be useful if you are prototyping and are just looking to have your
 /// code typecheck.
@@ -723,7 +724,7 @@ macro_rules! todo {
 /// those functions are provided by the compiler.
 pub(crate) mod builtin {
 
-    /// Causes compilation to fail with the given error message when encountered.
+    /// 当导致编译失败时,给定的错误消息
     ///
     /// This macro should be used when a crate uses a conditional compilation strategy to provide
     /// better error messages for erroneous conditions. It's the compiler-level form of [`panic!`],
@@ -766,7 +767,7 @@ pub(crate) mod builtin {
         ($msg:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Constructs parameters for the other string-formatting macros.
+    /// 字符串格式宏的构造参数
     ///
     /// This macro functions by taking a formatting string literal containing
     /// `{}` for each additional argument passed. `format_args!` prepares the
@@ -820,7 +821,7 @@ pub(crate) mod builtin {
         ($fmt:expr, $($args:tt)*) => ({ /* compiler built-in */ })
     }
 
-    /// Same as `format_args`, but adds a newline in the end.
+    /// 与format_args相同，但最后添加一个换行符
     #[unstable(feature = "format_args_nl", issue = "0",
                reason = "`format_args_nl` is only for internal \
                          language use and is subject to change")]
@@ -832,7 +833,7 @@ pub(crate) mod builtin {
         ($fmt:expr, $($args:tt)*) => ({ /* compiler built-in */ })
     }
 
-    /// Inspects an environment variable at compile time.
+    /// 在编译时检查环境变量.
     ///
     /// This macro will expand to the value of the named environment variable at
     /// compile time, yielding an expression of type `&'static str`.
@@ -871,7 +872,7 @@ pub(crate) mod builtin {
         ($name:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Optionally inspects an environment variable at compile time.
+    /// 可选的在编译时检查环境变量。
     ///
     /// If the named environment variable is present at compile time, this will
     /// expand into an expression of type `Option<&'static str>` whose value is
@@ -898,7 +899,7 @@ pub(crate) mod builtin {
         ($name:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Concatenates identifiers into one identifier.
+    /// 将多个标识符连接成一个标识符
     ///
     /// This macro takes any number of comma-separated identifiers, and
     /// concatenates them all into one, yielding an expression which is a new
@@ -980,7 +981,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! line { () => { /* compiler built-in */ } }
 
-    /// Expands to the column number at which it was invoked.
+    /// 扩展为调用它的列号
     ///
     /// With [`line!`] and [`file!`], these macros provide debugging information for
     /// developers about the location within the source.
@@ -1006,7 +1007,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! column { () => { /* compiler built-in */ } }
 
-    /// Expands to the file name in which it was invoked.
+    /// 扩展为调用它的文件名
     ///
     /// With [`line!`] and [`column!`], these macros provide debugging information for
     /// developers about the location within the source.
@@ -1031,7 +1032,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! file { () => { /* compiler built-in */ } }
 
-    /// Stringifies its arguments.
+    /// 对其参数进行字符串化
     ///
     /// This macro will yield an expression of type `&'static str` which is the
     /// stringification of all the tokens passed to the macro. No restrictions
@@ -1051,7 +1052,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! stringify { ($($t:tt)*) => { /* compiler built-in */ } }
 
-    /// Includes a utf8-encoded file as a string.
+    /// 包含一个utf8编码的文件作为字符串
     ///
     /// The file is located relative to the current file. (similarly to how
     /// modules are found)
@@ -1089,7 +1090,7 @@ pub(crate) mod builtin {
         ($file:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Includes a file as a reference to a byte array.
+    /// 包含一个文件，作为对字节数组的引用
     ///
     /// The file is located relative to the current file. (similarly to how
     /// modules are found)
@@ -1127,7 +1128,7 @@ pub(crate) mod builtin {
         ($file:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Expands to a string that represents the current module path.
+    /// 扩展为表示当前模块路径的字符串
     ///
     /// The current module path can be thought of as the hierarchy of modules
     /// leading back up to the crate root. The first component of the path
@@ -1149,7 +1150,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! module_path { () => { /* compiler built-in */ } }
 
-    /// Evaluates boolean combinations of configuration flags at compile-time.
+    /// 在编译时评估配置标志的布尔组合
     ///
     /// In addition to the `#[cfg]` attribute, this macro is provided to allow
     /// boolean expression evaluation of configuration flags. This frequently
@@ -1174,7 +1175,7 @@ pub(crate) mod builtin {
     #[macro_export]
     macro_rules! cfg { ($($cfg:tt)*) => { /* compiler built-in */ } }
 
-    /// Parses a file as an expression or an item according to the context.
+    /// 根据上下文将文件解析为表达式或项
     ///
     /// The file is located relative to the current file (similarly to how
     /// modules are found).
@@ -1221,7 +1222,7 @@ pub(crate) mod builtin {
         ($file:expr,) => ({ /* compiler built-in */ })
     }
 
-    /// Asserts that a boolean expression is `true` at runtime.
+    /// 运行时断言布尔表达式在为 `true`
     ///
     /// This will invoke the [`panic!`] macro if the provided expression cannot be
     /// evaluated to `true` at runtime.
@@ -1275,7 +1276,7 @@ pub(crate) mod builtin {
         ($cond:expr, $($arg:tt)+) => ({ /* compiler built-in */ })
     }
 
-    /// Inline assembly.
+    /// 内联汇编
     #[unstable(feature = "asm", issue = "29722",
                reason = "inline assembly is not stable enough for use and is subject to change")]
     #[rustc_builtin_macro]
@@ -1286,21 +1287,21 @@ pub(crate) mod builtin {
                         : $("clobbers",)*
                         : $("options",)*) => { /* compiler built-in */ } }
 
-    /// Module-level inline assembly.
+    /// 模块级内联汇编
     #[unstable(feature = "global_asm", issue = "35119",
                reason = "`global_asm!` is not stable enough for use and is subject to change")]
     #[rustc_builtin_macro]
     #[macro_export]
     macro_rules! global_asm { ("assembly") => { /* compiler built-in */ } }
 
-    /// Prints passed tokens into the standard output.
+    ///  将传递的令牌打印到标准输出中
     #[unstable(feature = "log_syntax", issue = "29598",
                reason = "`log_syntax!` is not stable enough for use and is subject to change")]
     #[rustc_builtin_macro]
     #[macro_export]
     macro_rules! log_syntax { ($($arg:tt)*) => { /* compiler built-in */ } }
 
-    /// Enables or disables tracing functionality used for debugging other macros.
+    /// 启用或禁用用于调试其他宏的跟踪功能
     #[unstable(feature = "trace_macros", issue = "29598",
                reason = "`trace_macros` is not stable enough for use and is subject to change")]
     #[rustc_builtin_macro]

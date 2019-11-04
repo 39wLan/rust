@@ -1,4 +1,4 @@
-//! Functionality for ordering and comparison.
+//! 排序和比较的功能
 //!
 //! This module contains various tools for ordering and comparing values. In
 //! summary:

@@ -1,4 +1,4 @@
-//! A character type.
+//! 字符类型
 //!
 //! The `char` type represents a single character. More specifically, since
 //! 'character' isn't a well-defined concept in Unicode, `char` is a '[Unicode

@@ -1,6 +1,6 @@
 #![stable(feature = "futures_api", since = "1.36.0")]
 
-//! Asynchronous values.
+//! 异步值
 
 mod future;
 #[stable(feature = "futures_api", since = "1.36.0")]

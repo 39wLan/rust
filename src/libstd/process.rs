@@ -1,4 +1,4 @@
-//! A module for working with processes.
+//! 进程处理模块
 //!
 //! This module is mostly concerned with spawning and interacting with child
 //! processes, but it also provides [`abort`] and [`exit`] for terminating the

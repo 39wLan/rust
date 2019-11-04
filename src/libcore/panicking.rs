@@ -1,4 +1,4 @@
-//! Panic support for libcore
+//! `libcore` 的`Panic`支持
 //!
 //! The core library cannot define panicking, but it does *declare* panicking. This
 //! means that the functions inside of libcore are allowed to panic, but to be

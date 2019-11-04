@@ -1,6 +1,6 @@
 // ignore-tidy-filelength
 
-//! Filesystem manipulation operations.
+//! 文件系统管理操作
 //!
 //! This module contains basic methods to manipulate the contents of the local
 //! filesystem. All methods in this module represent cross-platform filesystem

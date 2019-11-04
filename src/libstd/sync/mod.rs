@@ -1,4 +1,4 @@
-//! Useful synchronization primitives.
+//! 有用的同步原语
 //!
 //! ## The need for synchronization
 //!

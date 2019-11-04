@@ -1,4 +1,4 @@
-//! The 32-bit signed integer type.
+//! 32位带符号整数类型
 //!
 //! *[See also the `i32` primitive type](../../std/primitive.i32.html).*
 

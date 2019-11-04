@@ -1,4 +1,4 @@
-//! Collection types.
+//! 集合类型
 //!
 //! Rust's standard collection library provides efficient implementations of the
 //! most common general purpose programming data structures. By using the

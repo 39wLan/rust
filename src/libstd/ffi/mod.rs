@@ -1,4 +1,4 @@
-//! Utilities related to FFI bindings.
+//! 格式化和打印 String的实用工具
 //!
 //! This module provides utilities to handle data across non-Rust
 //! interfaces, like other programming languages and the underlying

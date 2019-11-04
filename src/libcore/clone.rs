@@ -1,4 +1,4 @@
-//! The `Clone` trait for types that cannot be 'implicitly copied'.
+//! 无法`隐式复制`类型的`Clone`特质
 //!
 //! In Rust, some simple types are "implicitly copyable" and when you
 //! assign them or pass them as arguments, the receiver will get a copy,

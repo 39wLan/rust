@@ -1,4 +1,4 @@
-//! The 128-bit unsigned integer type.
+//! 128位无符号整数类型
 //!
 //! *[See also the `u128` primitive type](../../std/primitive.u128.html).*
 

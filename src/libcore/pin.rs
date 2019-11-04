@@ -1,4 +1,4 @@
-//! Types that pin data to its location in memory.
+//! 将数据固定到其在内存中位置的类型
 //!
 //! It is sometimes useful to have objects that are guaranteed not to move,
 //! in the sense that their placement in memory does not change, and can thus be relied upon.

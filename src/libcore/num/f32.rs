@@ -1,5 +1,4 @@
-//! This module provides constants which are specific to the implementation
-//! of the `f32` floating point data type.
+//! 该模块提供特定于`f32`浮点数据类型实现的常量
 //!
 //! *[See also the `f32` primitive type](../../std/primitive.f32.html).*
 //!

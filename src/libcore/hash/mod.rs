@@ -1,4 +1,4 @@
-//! Generic hashing support.
+//! 通用哈希支持
 //!
 //! This module provides a generic way to compute the hash of a value. The
 //! simplest way to make a type hashable is to use `#[derive(Hash)]`:

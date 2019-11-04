@@ -1,4 +1,4 @@
-//! Panic support in the standard library.
+//! 标准库中的恐慌/故障支持
 
 #![stable(feature = "std_panic", since = "1.9.0")]
 

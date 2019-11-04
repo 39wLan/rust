@@ -1,5 +1,4 @@
-//! Implementation of various bits and pieces of the `panic!` macro and
-//! associated runtime pieces.
+//! "panic！"宏的各种片段和运行时相关片段的实现。
 //!
 //! Specifically, this module contains the implementation of:
 //!
