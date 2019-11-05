@@ -25,25 +25,16 @@ pub use core::time::Duration;
 
 /// 一种对单调不递减的时钟的量化。它是不透明的，只跟 `Duration` 在一起才有用处
 ///
-/// Instants are always guaranteed to be no less than any previously measured
-/// instant when created, and are often useful for tasks such as measuring
-/// benchmarks or timing how long an operation takes.
+/// 瞬间（Instants）总是保证不小于之前创建的测量值，通常在基准测试或者测量操作时间时有用
 ///
-/// Note, however, that instants are not guaranteed to be **steady**. In other
-/// words, each tick of the underlying clock may not be the same length (e.g.
-/// some seconds may be longer than others). An instant may jump forwards or
-/// experience time dilation (slow down or speed up), but it will never go
-/// backwards.
+/// 然而要注意，这种瞬间不保证是稳定的。换句话说，底层时钟的每次摆动时间可能不一样长（即，有些秒比其他的长一些）。瞬间
+///可能向前跃进，或者经历时间膨胀（加速或者减速），但是必然不会倒退。
 ///
-/// Instants are opaque types that can only be compared to one another. There is
-/// no method to get "the number of seconds" from an instant. Instead, it only
-/// allows measuring the duration between two instants (or comparing two
-/// instants).
+/// 瞬间是中不透明的类型，只能跟其他的比较。没有任何方法能获取“此瞬间的秒数”。只允许测量两个瞬间直接的时间间隔（或者比较两个瞬间）
 ///
-/// The size of an `Instant` struct may vary depending on the target operating
-/// system.
+/// 此`Instant` 结构体的大小可能随着目标操作系统发生变化。
 ///
-/// Example:
+/// 例如:
 ///
 /// ```no_run
 /// use std::time::{Duration, Instant};
@@ -173,7 +164,7 @@ pub struct SystemTime(time::SystemTime);
 pub struct SystemTimeError(Duration);
 
 impl Instant {
-    /// Returns an instant corresponding to "now".
+    /// 返回对应现在（now）的瞬间。
     ///
     /// # Examples
     ///
@@ -225,11 +216,11 @@ impl Instant {
         }
     }
 
-    /// Returns the amount of time elapsed from another instant to this one.
+    /// 返回到此瞬间经过的时间段
     ///
     /// # Panics
     ///
-    /// This function will panic if `earlier` is later than `self`.
+    /// 如果 `earlier` 比 `self` 晚，这个方法会恐慌。
     ///
     /// # Examples
     ///
@@ -247,8 +238,7 @@ impl Instant {
         self.0.checked_sub_instant(&earlier.0).expect("supplied instant is later than self")
     }
 
-    /// Returns the amount of time elapsed from another instant to this one,
-    /// or None if that instant is later than this one.
+    /// 返回到此瞬间经过的时间段，或者在彼瞬间比此瞬间更晚时返回 None。
     ///
     /// # Examples
     ///
@@ -267,8 +257,7 @@ impl Instant {
         self.0.checked_sub_instant(&earlier.0)
     }
 
-    /// Returns the amount of time elapsed from another instant to this one,
-    /// or zero duration if that instant is earlier than this one.
+    /// 返回到此瞬间经过的时间段，或者在彼瞬间比此瞬间更晚时返回零。
     ///
     /// # Examples
     ///
@@ -287,13 +276,11 @@ impl Instant {
         self.checked_duration_since(earlier).unwrap_or(Duration::new(0, 0))
     }
 
-    /// Returns the amount of time elapsed since this instant was created.
+    /// 返回从此瞬间创建开始到现在经过的时间段。
     ///
     /// # Panics
     ///
-    /// This function may panic if the current time is earlier than this
-    /// instant, which is something that can happen if an `Instant` is
-    /// produced synthetically.
+    /// 如果当前时间比此瞬间要早，这个函数会恐慌。这在此 `Instant` 是合成来的的时候可能会发生。
     ///
     /// # Examples
     ///
@@ -311,17 +298,15 @@ impl Instant {
         Instant::now() - *self
     }
 
-    /// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be represented as
-    /// `Instant` (which means it's inside the bounds of the underlying data structure), `None`
-    /// otherwise.
+    /// 如果 `self + duration` 能表示成 `Instant`（也就是说和在底层数据结构能表示的范围内），那么
+    ///返回 `Some(t)`，这里的 `t` 是` self + duration` 代表的时间；否则返回 `None。`
     #[stable(feature = "time_checked_add", since = "1.34.0")]
     pub fn checked_add(&self, duration: Duration) -> Option<Instant> {
         self.0.checked_add_duration(&duration).map(Instant)
     }
 
-    /// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be represented as
-    /// `Instant` (which means it's inside the bounds of the underlying data structure), `None`
-    /// otherwise.
+    /// 如果 `self - duration` 能表示成 `Instant`（也就是说和在底层数据结构能表示的范围内），那么返回 Some(t)，这里
+    ///的 `t` 是 `self - duration` 代表的时间；否则返回 `None`。
     #[stable(feature = "time_checked_add", since = "1.34.0")]
     pub fn checked_sub(&self, duration: Duration) -> Option<Instant> {
         self.0.checked_sub_duration(&duration).map(Instant)
@@ -402,7 +387,7 @@ impl SystemTime {
     #[stable(feature = "assoc_unix_epoch", since = "1.28.0")]
     pub const UNIX_EPOCH: SystemTime = UNIX_EPOCH;
 
-    /// Returns the system time corresponding to "now".
+    /// 返回对应现在（now）的系统时间。
     ///
     /// # Examples
     ///
@@ -416,18 +401,14 @@ impl SystemTime {
         SystemTime(time::SystemTime::now())
     }
 
-    /// Returns the amount of time elapsed from an earlier point in time.
+    /// 返回从先前的一个时间点开始，经过的时间段。
     ///
-    /// This function may fail because measurements taken earlier are not
-    /// guaranteed to always be before later measurements (due to anomalies such
-    /// as the system clock being adjusted either forwards or backwards).
-    /// [`Instant`] can be used to measure elapsed time without this risk of failure.
+    /// 因为靠前的测量不保证在靠后的测量之前（因为一些反常现象，例如往前往 后调整系统时钟），这个函数可以失败的。 [`Instant`]
+    ///可以用来测量时间段，而没有这种失败的风险。
     ///
-    /// If successful, [`Ok`]`(`[`Duration`]`)` is returned where the duration represents
-    /// the amount of time elapsed from the specified measurement to this one.
+    /// 如果成功了，返回 [`Ok`]`(`[`Duration`]`)`，这里的时间段代表从给出的点到这个点经过的时间。
     ///
-    /// Returns an [`Err`] if `earlier` is later than `self`, and the error
-    /// contains how far from `self` the time is.
+    /// 如果`earlier` 比 `self` 晚，返回一个 [`Err`]，这个错误包含了到 `self` 这个时间有多久。
     ///
     /// [`Ok`]: ../../std/result/enum.Result.html#variant.Ok
     /// [`Duration`]: ../../std/time/struct.Duration.html
@@ -449,19 +430,14 @@ impl SystemTime {
         self.0.sub_time(&earlier.0).map_err(SystemTimeError)
     }
 
-    /// Returns the difference between the clock time when this
-    /// system time was created, and the current clock time.
+    /// 返回此系统时间从创建到现在的时间区别。
     ///
-    /// This function may fail as the underlying system clock is susceptible to
-    /// drift and updates (e.g., the system clock could go backwards), so this
-    /// function may not always succeed. If successful, [`Ok`]`(`[`Duration`]`)` is
-    /// returned where the duration represents the amount of time elapsed from
-    /// this time measurement to the current time.
+    /// 因为系统时钟容许漂移和更新（即，系统时钟可以倒退），所以这个函数可能会失败。如果成功了，返回 [`Ok`]`(`[`Duration`]`)`，这里的时间段
+    ///表示从此时间到当前时间经过的。
     ///
-    /// To measure elapsed time reliably, use [`Instant`] instead.
+    /// 想要可靠地测量时间，可以用 [`Instant`]。
     ///
-    /// Returns an [`Err`] if `self` is later than the current system time, and
-    /// the error contains how far from the current system time `self` is.
+    /// 如果 self 比当前时间要早，返回 [`Err`]，此错误包含当前时间距离 `self` 的时间段。
     ///
     /// [`Ok`]: ../../std/result/enum.Result.html#variant.Ok
     /// [`Duration`]: ../../std/time/struct.Duration.html
@@ -484,17 +460,15 @@ impl SystemTime {
         SystemTime::now().duration_since(*self)
     }
 
-    /// Returns `Some(t)` where `t` is the time `self + duration` if `t` can be represented as
-    /// `SystemTime` (which means it's inside the bounds of the underlying data structure), `None`
-    /// otherwise.
+    /// 如果` self + duration` 能表示成 `SystemTime`（也就是说和在底层数据结构能表示的范围内），那么返回 `Some(t)`，这里的 `t` 是 `self + duration` 代
+    ///表的时间；否则返回 `None`。
     #[stable(feature = "time_checked_add", since = "1.34.0")]
     pub fn checked_add(&self, duration: Duration) -> Option<SystemTime> {
         self.0.checked_add_duration(&duration).map(SystemTime)
     }
 
-    /// Returns `Some(t)` where `t` is the time `self - duration` if `t` can be represented as
-    /// `SystemTime` (which means it's inside the bounds of the underlying data structure), `None`
-    /// otherwise.
+   /// 如果` self - duration` 能表示成 `SystemTime`（也就是说和在底层数据结构能表示的范围内），那么返回 `Some(t)`，这里的 `t` 是 `self - duration` 代
+    ///表的时间；否则返回 `None`。
     #[stable(feature = "time_checked_add", since = "1.34.0")]
     pub fn checked_sub(&self, duration: Duration) -> Option<SystemTime> {
         self.0.checked_sub_duration(&duration).map(SystemTime)
@@ -546,14 +520,11 @@ impl fmt::Debug for SystemTime {
     }
 }
 
-/// An anchor in time which can be used to create new `SystemTime` instances or
-/// learn about where in time a `SystemTime` lies.
+/// 用来创建 `SystemTime` 的一个时间锚点，也用来了解一个 `SystemTime` 落在什么时间上。
 ///
-/// This constant is defined to be "1970-01-01 00:00:00 UTC" on all systems with
-/// respect to the system clock. Using `duration_since` on an existing
-/// [`SystemTime`] instance can tell how far away from this point in time a
-/// measurement lies, and using `UNIX_EPOCH + duration` can be used to create a
-/// [`SystemTime`] instance to represent another fixed point in time.
+/// 这个常量，在所有的系统上都定义为参照系统时钟的 “1970-01-01 00:00:00 UTC”。在一个现
+///存的 [`SystemTime`] 对象上用 `duration_since` 可以看出到此时间点有多远。`UNIX_EPOCH + duration` 可以创建 [`SystemTime`] 实
+///例，来表达另一个固定的时间点。
 ///
 /// [`SystemTime`]: ../../std/time/struct.SystemTime.html
 ///
