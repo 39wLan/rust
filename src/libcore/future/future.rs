@@ -5,23 +5,16 @@ use crate::ops;
 use crate::pin::Pin;
 use crate::task::{Context, Poll};
 
-/// A future represents an asynchronous computation.
+/// `future`代表异步计算
 ///
-/// A future is a value that may not have finished computing yet. This kind of
-/// "asynchronous value" makes it possible for a thread to continue doing useful
-/// work while it waits for the value to become available.
+/// A future 是可能尚未完成计算的值。 这种“异步值”使线程有可能在等待值变为可用时继续执行有用的工作
 ///
-/// # The `poll` method
+/// # `poll` 方法
 ///
-/// The core method of future, `poll`, *attempts* to resolve the future into a
-/// final value. This method does not block if the value is not ready. Instead,
-/// the current task is scheduled to be woken up when it's possible to make
-/// further progress by `poll`ing again. The `context` passed to the `poll`
-/// method can provide a [`Waker`], which is a handle for waking up the current
-/// task.
+/// `future`核心方法，`poll`，试图促使`future`成最终值。如果值未准备好，则此方法不会阻塞。相反，在可能的情况下通过`poll`
+///再次唤醒当前任务。传递给`poll` 方法的`context`可以提供[`Waker`]，作为唤醒当前任务的句柄
 ///
-/// When using a future, you generally won't call `poll` directly, but instead
-/// `.await` the value.
+/// 使用`future`时，通常不会直接调用`poll`，而是直接 `.await`值
 ///
 /// [`Waker`]: ../task/struct.Waker.html
 #[doc(spotlight)]
@@ -29,22 +22,20 @@ use crate::task::{Context, Poll};
 #[stable(feature = "futures_api", since = "1.36.0")]
 #[lang = "future_trait"]
 pub trait Future {
-    /// The type of value produced on completion.
+    /// 完成时产生的值类型
     #[stable(feature = "futures_api", since = "1.36.0")]
     type Output;
 
-    /// Attempt to resolve the future to a final value, registering
-    /// the current task for wakeup if the value is not yet available.
+    /// 尝试将`future`解析为最终值，如果该值尚不可用，请注册当前任务以进行唤醒。
     ///
-    /// # Return value
+    /// # 返回值
     ///
-    /// This function returns:
+    /// 该函数返回：
     ///
-    /// - [`Poll::Pending`] if the future is not ready yet
-    /// - [`Poll::Ready(val)`] with the result `val` of this future if it
-    ///   finished successfully.
+    /// - [`Poll::Pending`] 如果未来还没有准备好
+    /// - [`Poll::Ready(val)`] 如果成功完成，`future`将结果`val`返回
     ///
-    /// Once a future has finished, clients should not `poll` it again.
+    /// `future`一旦结束，就不应该再`poll`
     ///
     /// When a future is not ready yet, `poll` returns `Poll::Pending` and
     /// stores a clone of the [`Waker`] copied from the current [`Context`].
