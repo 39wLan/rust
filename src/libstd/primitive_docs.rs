@@ -449,40 +449,29 @@ mod prim_pointer { }
 //
 /// 一个固定大小的数组, 表示为`[T; N]`，即元素类型`T`, 和非负编译时常量`N`.
 ///
-/// There are two syntactic forms for creating an array:
+/// 创建数组有两种语法形式：
 ///
-/// * A list with each element, i.e., `[x, y, z]`.
-/// * A repeat expression `[x; N]`, which produces an array with `N` copies of `x`.
-///   The type of `x` must be [`Copy`][copy].
+/// * 每个元素的列表，即 `[x, y, z]`.
+/// * 一个重复表达式 `[x; N]`, 产生一个数组，数组为 x的 `N`个副本`x`. `x`的类型必须为[`Copy`][copy].
 ///
-/// Arrays of sizes from 0 to 32 (inclusive) implement the following traits if
-/// the element type allows it:
+/// 如果元素类型允许，则大小从0到32（含）的数组实现以下特质：
 ///
 /// - [`Debug`][debug]
-/// - [`IntoIterator`][intoiterator] (implemented for `&[T; N]` and `&mut [T; N]`)
+/// - [`IntoIterator`][intoiterator] (针对`&[T; N]` 和 `&mut [T; N]`实现)
 /// - [`PartialEq`][partialeq], [`PartialOrd`][partialord], [`Eq`][eq], [`Ord`][ord]
 /// - [`Hash`][hash]
 /// - [`AsRef`][asref], [`AsMut`][asmut]
 /// - [`Borrow`][borrow], [`BorrowMut`][borrowmut]
 /// - [`Default`][default]
 ///
-/// This limitation on the size `N` exists because Rust does not yet support
-/// code that is generic over the size of an array type. `[Foo; 3]` and `[Bar; 3]`
-/// are instances of same generic type `[T; 3]`, but `[Foo; 3]` and `[Foo; 5]` are
-/// entirely different types. As a stopgap, trait implementations are
-/// statically generated up to size 32.
+/// 存在大小为`N`的限制是因为Rust尚不支持在数组类型上的泛型大小的代码. `[Foo; 3]` 和 `[Bar; 3]` 是相同泛型 `[T; 3]`类型的实
+/// 例，但是 `[Foo; 3] `和 `[Foo; 5]`却是完全不同的类型。 作为权宜之计，特质实现是静态生成的，最大大小为32
 ///
-/// Arrays of *any* size are [`Copy`][copy] if the element type is [`Copy`][copy]
-/// and [`Clone`][clone] if the element type is [`Clone`][clone]. This works
-/// because [`Copy`][copy] and [`Clone`][clone] traits are specially known
-/// to the compiler.
+/// 如果元素类型为 [`Copy`][copy]， 或者元素类型为 [`Clone`][clone]，则任何大小的数组 都是 [`Copy`][copy] 或者[`Clone`][clone]. 这有效是因为  [`Copy`][copy] 和 [`Clone`][clone]  特质是编译器特有的.
 ///
-/// Arrays coerce to [slices (`[T]`)][slice], so a slice method may be called on
-/// an array. Indeed, this provides most of the API for working with arrays.
-/// Slices have a dynamic size and do not coerce to arrays.
+/// 数组强制转换为 [slices (`[T]`)](slice)，因此可以在数组上调用slice方法。实际上，这提供了用于处理数组的大多数API。切片具有动态大小，并且不强制转换为数组
 ///
-/// You can move elements out of an array with a slice pattern. If you want
-/// one element, see [`mem::replace`][replace].
+/// 您可以使用切片模式将元素移出数组。如果需要一个元素，请参见 [`mem::replace`][replace].
 ///
 /// # 示例
 ///
@@ -500,7 +489,7 @@ mod prim_pointer { }
 /// }
 /// ```
 ///
-/// An array itself is not iterable:
+/// 数组本身是不可迭代的：
 ///
 /// ```compile_fail,E0277
 /// let array: [i32; 3] = [0; 3];
@@ -509,22 +498,21 @@ mod prim_pointer { }
 /// // error: the trait bound `[i32; 3]: std::iter::Iterator` is not satisfied
 /// ```
 ///
-/// The solution is to coerce the array to a slice by calling a slice method:
+/// 解决方案是通过调用slice方法将数组强制为slice：
 ///
 /// ```
 /// # let array: [i32; 3] = [0; 3];
 /// for x in array.iter() { }
 /// ```
 ///
-/// If the array has 32 or fewer elements (see above), you can also use the
-/// array reference's [`IntoIterator`] implementation:
+/// 如果数组包含32个或更少的元素（请参见上文），则还可以使用数组引用的[`IntoIterator`]实现：
 ///
 /// ```
 /// # let array: [i32; 3] = [0; 3];
 /// for x in &array { }
 /// ```
 ///
-/// You can use a slice pattern to move elements out of an array:
+/// 您可以使用切片模式将元素移出数组：
 ///
 /// ```
 /// fn move_away(_: String) { /* Do interesting things. */ }

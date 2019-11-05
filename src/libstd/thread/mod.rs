@@ -1,38 +1,21 @@
 //! 原生线程
 //!
-//! ## The threading model
+//! ## 线程模型
 //!
-//! An executing Rust program consists of a collection of native OS threads,
-//! each with their own stack and local state. Threads can be named, and
-//! provide some built-in support for low-level synchronization.
+//! 正在执行的Rust程序包含一组原生OS线程，每个原生线程都有自己的堆栈和局部状态。可以命名线程，并为低级同步提供一些内置支持
 //!
-//! Communication between threads can be done through
-//! [channels], Rust's message-passing types, along with [other forms of thread
-//! synchronization](../../std/sync/index.html) and shared-memory data
-//! structures. In particular, types that are guaranteed to be
-//! threadsafe are easily shared between threads using the
-//! atomically-reference-counted container, [`Arc`].
+//! 线程之间的通信可以通过 [channels](通道), Rust的消息传递类型, 以及 [其他形式的线程同步](../../std/sync/index.html) 和共享内存数据结
+//! 构来完成. 特别是，使用原子引用计数的容器类型 [`Arc`], 可 以在线程之间轻松共享并保证线程安全.
 //!
-//! Fatal logic errors in Rust cause *thread panic*, during which
-//! a thread will unwind the stack, running destructors and freeing
-//! owned resources. While not meant as a 'try/catch' mechanism, panics
-//! in Rust can nonetheless be caught (unless compiling with `panic=abort`) with
-//! [`catch_unwind`](../../std/panic/fn.catch_unwind.html) and recovered
-//! from, or alternatively be resumed with
-//! [`resume_unwind`](../../std/panic/fn.resume_unwind.html). If the panic
-//! is not caught the thread will exit, but the panic may optionally be
-//! detected from a different thread with [`join`]. If the main thread panics
-//! without the panic being caught, the application will exit with a
-//! non-zero exit code.
+//! Rust中的致命逻辑错误导致线程崩溃，在此期间线程将展开堆栈，运行析构函数并释放拥有的资源. 尽管这并不是一种 'try/catch'机制，但 Rust的恐
+//! 慌仍然可以通过[`catch_unwind`](../../std/panic/fn.catch_unwind.html)捕获（除了使用`panic=abort`进行编译 ） 或通过[`resume_unwind`](../../std/panic/fn.resume_unwind.html)从中恢复. 
+//! 如果恐慌没有捕获线程将退出，但恐慌可以通过[`join`]可选地从其他线程检测到. 如果主线程出现恐慌而没有捕获到，则应用程序将以非零的退出代码退出
 //!
-//! When the main thread of a Rust program terminates, the entire program shuts
-//! down, even if other threads are still running. However, this module provides
-//! convenient facilities for automatically waiting for the termination of a
-//! child thread (i.e., join).
+//! 当Rust程序的主线程终止时，即使其他线程仍在运行，整个程序也会关闭。但是，此模块提供了便利的功能，可以自动等待子线程的终止(即 join).
 //!
-//! ## Spawning a thread
+//! ## 产生线程
 //!
-//! A new thread can be spawned using the [`thread::spawn`][`spawn`] function:
+//! 可以使用 [`thread::spawn`][`spawn`] 函数产生一个新线程：
 //!
 //! ```rust
 //! use std::thread;
@@ -42,13 +25,9 @@
 //! });
 //! ```
 //!
-//! In this example, the spawned thread is "detached" from the current
-//! thread. This means that it can outlive its parent (the thread that spawned
-//! it), unless this parent is the main thread.
-//!
-//! The parent thread can also wait on the completion of the child
-//! thread; a call to [`spawn`] produces a [`JoinHandle`], which provides
-//! a `join` method for waiting:
+//! 在此示例中，生成的线程是与当前线程 "分离" 的。这意味着它可以在其父线程（产生它的线程）之外存活，除非该父线程是主线程。
+//! 
+//!父线程也可以等待子线程的完成, 调用[`spawn`]产生的 [`JoinHandle`]，提供了`join`等待方法：
 //!
 //! ```rust
 //! use std::thread;
@@ -60,14 +39,11 @@
 //! let res = child.join();
 //! ```
 //!
-//! The [`join`] method returns a [`thread::Result`] containing [`Ok`] of the final
-//! value produced by the child thread, or [`Err`] of the value given to
-//! a call to [`panic!`] if the child panicked.
+//! 该 [`join`] 方法返回一个 [`thread::Result`] 包含子线程[`Ok`]产生的最终值的内容，或者子线程 `panic!`时 返回[`Err`] 值来调用[`panic!`]。
 //!
-//! ## Configuring threads
+//! ## 配置线程
 //!
-//! A new thread can be configured before it is spawned via the [`Builder`] type,
-//! which currently allows you to set the name and stack size for the child thread:
+//! 可以通过[`Builder`]类型在产生新线程之前对其进行配置，当前该类型允许您设置子线程的名称和堆栈大小：
 //!
 //! ```rust
 //! # #![allow(unused_must_use)]
@@ -78,56 +54,39 @@
 //! });
 //! ```
 //!
-//! ## The `Thread` type
+//! ## `Thread` 类型
 //!
-//! Threads are represented via the [`Thread`] type, which you can get in one of
-//! two ways:
+//! 线程通过 [`Thread`]类型表示，您可以通过以下两种方式之一来获取：
 //!
-//! * By spawning a new thread, e.g., using the [`thread::spawn`][`spawn`]
-//!   function, and calling [`thread`][`JoinHandle::thread`] on the [`JoinHandle`].
-//! * By requesting the current thread, using the [`thread::current`] function.
+//! * 通过生成一个新的线程，例如，使用的[`thread::spawn`][`spawn`]函数，在 [`JoinHandle`]上调用 [`thread`][`JoinHandle::thread`] .
+//! * 通过请求当前线程，使用 [`thread::current`] 函数.
 //!
-//! The [`thread::current`] function is available even for threads not spawned
-//! by the APIs of this module.
+//! 该[`thread::current`]函数甚至适用于不是由该模块API产生的线程
 //!
-//! ## Thread-local storage
+//! ## 线程局部存储
 //!
-//! This module also provides an implementation of thread-local storage for Rust
-//! programs. Thread-local storage is a method of storing data into a global
-//! variable that each thread in the program will have its own copy of.
-//! Threads do not share this data, so accesses do not need to be synchronized.
+//! 该模块还为Rust程序提供了线程局部存储的实现。线程局部存储是一种将数据存储到全局变量中 的方法，程序中的每个线程都有其自己的副本。线程不共享此数据，因此不需要同步访问
 //!
-//! A thread-local key owns the value it contains and will destroy the value when the
-//! thread exits. It is created with the [`thread_local!`] macro and can contain any
-//! value that is `'static` (no borrowed pointers). It provides an accessor function,
-//! [`with`], that yields a shared reference to the value to the specified
-//! closure. Thread-local keys allow only shared access to values, as there would be no
-//! way to guarantee uniqueness if mutable borrows were allowed. Most values
-//! will want to make use of some form of **interior mutability** through the
-//! [`Cell`] or [`RefCell`] types.
+//! 线程局部键拥有其包含的值，并且在线程退出时将销毁该值。它是使用[`thread_local!`] 宏创建， 可以包含任何`'static`（无借入指针）值。它提
+//! 供了一个访问器函数，该[`with`]函 数 产生对指定闭包的值的共享引用。线程局部键仅允许共享访问值，因为如果允许可变借用，则无法保证
+//! 唯一性。大多数值都希望通过  [`Cell`] 或 [`RefCell`]  类型 利用某种形式的内部可变性.
 //!
-//! ## Naming threads
+//! ## 命名线程
 //!
-//! Threads are able to have associated names for identification purposes. By default, spawned
-//! threads are unnamed. To specify a name for a thread, build the thread with [`Builder`] and pass
-//! the desired thread name to [`Builder::name`]. To retrieve the thread name from within the
-//! thread, use [`Thread::name`]. A couple examples of where the name of a thread gets used:
+//! 线程能够具有关联的名称以用于识别。默认情况下，生成的线程是未命名的。要为线程指定名称，请使用 [`Builder`] 构建线程, 并将所需
+//! 的线程名称传递给[`Builder::name`]。要从 线程内部检索线程名称，请使用[`Thread::name`]。几个使用线程名称的地方的例子：
 //!
-//! * If a panic occurs in a named thread, the thread name will be printed in the panic message.
-//! * The thread name is provided to the OS where applicable (e.g., `pthread_setname_np` in
-//!   unix-like platforms).
+//! * 如果命名线程发生panic，则线程名称将显示在panic消息中
+//! * 在适用的情况下（例如，在类Unix平台中的pthread_setname_np ）将线程名称提供给OS.
 //!
-//! ## Stack size
+//! ## 堆栈大小
 //!
-//! The default stack size for spawned threads is 2 MiB, though this particular stack size is
-//! subject to change in the future. There are two ways to manually specify the stack size for
-//! spawned threads:
+//! 生成线程的默认堆栈大小为2 MiB，尽管此特定堆栈大小将来可能会更改。有两种方法可以手动指定生成的线程的堆栈大小：
 //!
-//! * Build the thread with [`Builder`] and pass the desired stack size to [`Builder::stack_size`].
-//! * Set the `RUST_MIN_STACK` environment variable to an integer representing the desired stack
-//!   size (in bytes). Note that setting [`Builder::stack_size`] will override this.
+//! * 使用[`Builder`]构建线程，并将所需的堆栈大小传递给 [`Builder::stack_size`].
+//! * 将`RUST_MIN_STACK`环境变量设置为代表所需堆栈大小（以字节为单位）的整数。请注意，设置[`Builder::stack_size`]  将覆盖此设置 .
 //!
-//! Note that the stack size of the main thread is *not* determined by Rust.
+//! 请注意，主线程的堆栈大小不是由Rust确定的
 //!
 //! [channels]: ../../std/sync/mpsc/index.html
 //! [`Arc`]: ../../std/sync/struct.Arc.html
@@ -207,8 +166,7 @@ pub use self::local::{LocalKey, AccessError};
 // Builder
 ////////////////////////////////////////////////////////////////////////////////
 
-/// Thread factory, which can be used in order to configure the properties of
-/// a new thread.
+/// 线程工厂，可用于配置新线程的属性
 ///
 /// Methods can be chained on it in order to configure it.
 ///
@@ -499,7 +457,7 @@ impl Builder {
 // Free functions
 ////////////////////////////////////////////////////////////////////////////////
 
-/// Spawns a new thread, returning a [`JoinHandle`] for it.
+/// 产生一个新线程，并返回一个它的[`JoinHandle`]
 ///
 /// The join handle will implicitly *detach* the child thread upon being
 /// dropped. In this case, the child thread may outlive the parent (unless
@@ -610,7 +568,7 @@ pub fn spawn<F, T>(f: F) -> JoinHandle<T> where
     Builder::new().spawn(f).expect("failed to spawn thread")
 }
 
-/// Gets a handle to the thread that invokes it.
+/// 获取调用它的线程的句柄
 ///
 /// # Examples
 ///
@@ -636,7 +594,7 @@ pub fn current() -> Thread {
                                           data has been destroyed")
 }
 
-/// Cooperatively gives up a timeslice to the OS scheduler.
+/// 协作地放弃OS调度程序的时间片
 ///
 /// This is used when the programmer knows that the thread will have nothing
 /// to do for some time, and thus avoid wasting computing time.
@@ -721,7 +679,7 @@ pub fn panicking() -> bool {
     panicking::panicking()
 }
 
-/// Puts the current thread to sleep for at least the specified amount of time.
+/// 使当前线程休眠至少指定的时间量
 ///
 /// The thread may sleep longer than the duration specified due to scheduling
 /// specifics or platform-dependent functionality. It will never sleep less.
@@ -747,7 +705,7 @@ pub fn sleep_ms(ms: u32) {
     sleep(Duration::from_millis(ms as u64))
 }
 
-/// Puts the current thread to sleep for at least the specified amount of time.
+/// 使当前线程休眠至少指定的时间量
 ///
 /// The thread may sleep longer than the duration specified due to scheduling
 /// specifics or platform-dependent functionality. It will never sleep less.
@@ -913,7 +871,7 @@ pub fn park() {
     }
 }
 
-/// Use [`park_timeout`].
+/// 使用 [`park_timeout`].
 ///
 /// Blocks unless or until the current thread's token is made available or
 /// the specified duration has been reached (may wake spuriously).
@@ -934,8 +892,7 @@ pub fn park_timeout_ms(ms: u32) {
     park_timeout(Duration::from_millis(ms as u64))
 }
 
-/// Blocks unless or until the current thread's token is made available or
-/// the specified duration has been reached (may wake spuriously).
+/// 阻塞 除非或直到当前线程的令牌可用或达到指定的持续时间后（可能会虚假唤醒）
 ///
 /// The semantics of this function are equivalent to [`park`][park] except
 /// that the thread will be blocked for roughly no longer than `dur`. This
@@ -1009,10 +966,10 @@ pub fn park_timeout(dur: Duration) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// ThreadId
+// 线程
 ////////////////////////////////////////////////////////////////////////////////
 
-/// A unique identifier for a running thread.
+/// 正在运行线程的唯一标识符
 ///
 /// A `ThreadId` is an opaque object that has a unique value for each thread
 /// that creates one. `ThreadId`s are not guaranteed to correspond to a thread's
@@ -1080,7 +1037,7 @@ struct Inner {
 
 #[derive(Clone)]
 #[stable(feature = "rust1", since = "1.0.0")]
-/// A handle to a thread.
+/// 线程句柄
 ///
 /// Threads are represented via the `Thread` type, which you can get in one of
 /// two ways:
@@ -1187,7 +1144,7 @@ impl Thread {
         self.inner.cvar.notify_one()
     }
 
-    /// Gets the thread's unique identifier.
+    /// 获取线程的唯一标识符
     ///
     /// # Examples
     ///
@@ -1267,7 +1224,7 @@ impl fmt::Debug for Thread {
 // JoinHandle
 ////////////////////////////////////////////////////////////////////////////////
 
-/// A specialized [`Result`] type for threads.
+/// 线程的一个专门Result类型
 ///
 /// Indicates the manner in which a thread exited.
 ///
@@ -1328,7 +1285,7 @@ impl<T> JoinInner<T> {
     }
 }
 
-/// An owned permission to join on a thread (block on its termination).
+/// 拥有 join线程的权限（阻塞其终止）
 ///
 /// A `JoinHandle` *detaches* the associated thread when it is dropped, which
 /// means that there is no longer any handle to thread and no way to `join`
