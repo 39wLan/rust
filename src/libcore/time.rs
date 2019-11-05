@@ -24,19 +24,15 @@ const MICROS_PER_SEC: u64 = 1_000_000;
 
 /// `Duration` 类型用来表示时间段，特别是用作表示系统超时
 ///
-/// Each `Duration` is composed of a whole number of seconds and a fractional part
-/// represented in nanoseconds. If the underlying system does not support
-/// nanosecond-level precision, APIs binding a system timeout will typically round up
-/// the number of nanoseconds.
+/// 每个 `Duration` 都是整个秒数时间和表示成纳秒的小数部分的组合。如果底层系统不支持纳秒级别的精度，那么绑定了系统超时的 API 会上舍入纳秒的表示。
 ///
-/// `Duration`s implement many common traits, including [`Add`], [`Sub`], and other
-/// [`ops`] traits.
+///`Duration` 实现了很多常见的特质，包括  [`Add`], [`Sub`] 和其他 ops 特质。
 ///
 /// [`Add`]: ../../std/ops/trait.Add.html
 /// [`Sub`]: ../../std/ops/trait.Sub.html
 /// [`ops`]: ../../std/ops/index.html
 ///
-/// # Examples
+/// # 例子
 ///
 /// ```
 /// use std::time::Duration;
@@ -57,9 +53,9 @@ pub struct Duration {
 }
 
 impl Duration {
-    /// The duration of one second.
+    /// 长一秒的时间段。
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// #![feature(duration_constants)]
@@ -70,9 +66,9 @@ impl Duration {
     #[unstable(feature = "duration_constants", issue = "57391")]
     pub const SECOND: Duration = Duration::from_secs(1);
 
-    /// The duration of one millisecond.
+    /// 长一毫秒的时间段
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// #![feature(duration_constants)]
@@ -83,9 +79,9 @@ impl Duration {
     #[unstable(feature = "duration_constants", issue = "57391")]
     pub const MILLISECOND: Duration = Duration::from_millis(1);
 
-    /// The duration of one microsecond.
+    /// 长一微秒的时间段
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// #![feature(duration_constants)]
@@ -96,9 +92,9 @@ impl Duration {
     #[unstable(feature = "duration_constants", issue = "57391")]
     pub const MICROSECOND: Duration = Duration::from_micros(1);
 
-    /// The duration of one nanosecond.
+    /// 长一纳秒的时间段
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// #![feature(duration_constants)]
@@ -109,18 +105,15 @@ impl Duration {
     #[unstable(feature = "duration_constants", issue = "57391")]
     pub const NANOSECOND: Duration = Duration::from_nanos(1);
 
-    /// Creates a new `Duration` from the specified number of whole seconds and
-    /// additional nanoseconds.
+    /// 从给定的秒数和额外的纳秒创建一个新的 `Duration`
     ///
-    /// If the number of nanoseconds is greater than 1 billion (the number of
-    /// nanoseconds in a second), then it will carry over into the seconds provided.
+    /// 如果纳秒数多于十亿（一秒之内的纳秒数），将会进位到秒里面。
     ///
     /// # Panics
     ///
-    /// This constructor will panic if the carry from the nanoseconds overflows
-    /// the seconds counter.
+    /// 从纳秒进的位如果让秒数溢出了秒数计数变量，这个构造器会发生恐慌。
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// use std::time::Duration;
@@ -136,9 +129,9 @@ impl Duration {
         Duration { secs, nanos }
     }
 
-    /// Creates a new `Duration` from the specified number of whole seconds.
+    /// 用给定的秒数创建一个 `Duration`
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// use std::time::Duration;
@@ -155,9 +148,9 @@ impl Duration {
         Duration { secs, nanos: 0 }
     }
 
-    /// Creates a new `Duration` from the specified number of milliseconds.
+    /// 用给定的毫秒数创建一个 `Duration`
     ///
-    /// # Examples
+    /// # 例子
     ///
     /// ```
     /// use std::time::Duration;
@@ -177,7 +170,7 @@ impl Duration {
         }
     }
 
-    /// Creates a new `Duration` from the specified number of microseconds.
+    /// 从给定的微秒数创建一个 `Duration`
     ///
     /// # Examples
     ///
@@ -199,7 +192,7 @@ impl Duration {
         }
     }
 
-    /// Creates a new `Duration` from the specified number of nanoseconds.
+    /// 从给定的纳秒数创建一个 `Duration`
     ///
     /// # Examples
     ///
@@ -221,10 +214,9 @@ impl Duration {
         }
     }
 
-    /// Returns the number of _whole_ seconds contained by this `Duration`.
+    /// 返回此 `Duration` 包含的整秒数。
     ///
-    /// The returned value does not include the fractional (nanosecond) part of the
-    /// duration, which can be obtained using [`subsec_nanos`].
+    /// 返回值不会包含小数部分（纳秒）的时间段，这段可以用  [`subsec_nanos`] 获取。
     ///
     /// # Examples
     ///
@@ -235,8 +227,7 @@ impl Duration {
     /// assert_eq!(duration.as_secs(), 5);
     /// ```
     ///
-    /// To determine the total number of seconds represented by the `Duration`,
-    /// use `as_secs` in combination with [`subsec_nanos`]:
+    /// 想要获取此 Duration 的完整秒数，可以结合 `as_secs` 和 [`subsec_nanos`]：
     ///
     /// ```
     /// use std::time::Duration;
@@ -253,11 +244,9 @@ impl Duration {
     #[inline]
     pub const fn as_secs(&self) -> u64 { self.secs }
 
-    /// Returns the fractional part of this `Duration`, in whole milliseconds.
+    /// 以整毫秒的形式，返回此 `Duration` 的小数部分。
     ///
-    /// This method does **not** return the length of the duration when
-    /// represented by milliseconds. The returned number always represents a
-    /// fractional portion of a second (i.e., it is less than one thousand).
+    /// 这个方法不会返回表示成毫秒的时间段。返回的数字总是表示一秒的小数部分（即，小于一千）。
     ///
     /// # Examples
     ///
@@ -272,11 +261,9 @@ impl Duration {
     #[inline]
     pub const fn subsec_millis(&self) -> u32 { self.nanos / NANOS_PER_MILLI }
 
-    /// Returns the fractional part of this `Duration`, in whole microseconds.
+    ///以整微秒的形式，返回此 `Duration` 的小数部分。
     ///
-    /// This method does **not** return the length of the duration when
-    /// represented by microseconds. The returned number always represents a
-    /// fractional portion of a second (i.e., it is less than one million).
+    /// 这个方法不会返回表示成微秒的时间段。返回的数字总是表示一秒的小数部分（即，小于一百万）。
     ///
     /// # Examples
     ///
@@ -291,11 +278,9 @@ impl Duration {
     #[inline]
     pub const fn subsec_micros(&self) -> u32 { self.nanos / NANOS_PER_MICRO }
 
-    /// Returns the fractional part of this `Duration`, in nanoseconds.
+    /// 以纳秒的形式，返回此 `Duration` 的小数部分。
     ///
-    /// This method does **not** return the length of the duration when
-    /// represented by nanoseconds. The returned number always represents a
-    /// fractional portion of a second (i.e., it is less than one billion).
+    /// 这个方法不会返回表示成纳秒的时间段。返回的数字总是表示一秒的小数部分（即，小于十亿）
     ///
     /// # Examples
     ///
@@ -310,7 +295,7 @@ impl Duration {
     #[inline]
     pub const fn subsec_nanos(&self) -> u32 { self.nanos }
 
-    /// Returns the total number of whole milliseconds contained by this `Duration`.
+    /// 返回此 `Duration` 包含的整毫秒数。
     ///
     /// # Examples
     ///
@@ -326,7 +311,7 @@ impl Duration {
         self.secs as u128 * MILLIS_PER_SEC as u128 + (self.nanos / NANOS_PER_MILLI) as u128
     }
 
-    /// Returns the total number of whole microseconds contained by this `Duration`.
+    /// 返回此 `Duration` 包含的整微秒数。
     ///
     /// # Examples
     ///
@@ -342,7 +327,7 @@ impl Duration {
         self.secs as u128 * MICROS_PER_SEC as u128 + (self.nanos / NANOS_PER_MICRO) as u128
     }
 
-    /// Returns the total number of nanoseconds contained by this `Duration`.
+    /// 返回此 `Duration` 包含的整纳秒数。
     ///
     /// # Examples
     ///
@@ -358,14 +343,13 @@ impl Duration {
         self.secs as u128 * NANOS_PER_SEC as u128 + self.nanos as u128
     }
 
-    /// Checked `Duration` addition. Computes `self + other`, returning [`None`]
-    /// if overflow occurred.
+    /// 进行检查的 `Duration` 加法。计算 `self + other`，如果发生溢出，返回 [`None`] 。
     ///
     /// [`None`]: ../../std/option/enum.Option.html#variant.None
     ///
     /// # Examples
     ///
-    /// Basic usage:
+    /// 基本用法：
     ///
     /// ```
     /// use std::time::Duration;
@@ -396,8 +380,7 @@ impl Duration {
         }
     }
 
-    /// Checked `Duration` subtraction. Computes `self - other`, returning [`None`]
-    /// if the result would be negative or if overflow occurred.
+    /// 进行检查的 `Duration` 减法。计算 `self - other`，如果结果应该是负的，或者发生了溢出，返回 [`None`]。
     ///
     /// [`None`]: ../../std/option/enum.Option.html#variant.None
     ///
@@ -432,8 +415,7 @@ impl Duration {
         }
     }
 
-    /// Checked `Duration` multiplication. Computes `self * other`, returning
-    /// [`None`] if overflow occurred.
+    /// 进行检查的 `Duration` 乘法。计算 `self * other`，如果发生溢出，返回 [`None`]。
     ///
     /// [`None`]: ../../std/option/enum.Option.html#variant.None
     ///
@@ -467,8 +449,7 @@ impl Duration {
         }
     }
 
-    /// Checked `Duration` division. Computes `self / other`, returning [`None`]
-    /// if `other == 0`.
+    /// 进行检查的 `Duration` 除法。计算 `self / other`，如果 `other == 0`，返回 [`None`]。
     ///
     /// [`None`]: ../../std/option/enum.Option.html#variant.None
     ///
@@ -498,9 +479,9 @@ impl Duration {
         }
     }
 
-    /// Returns the number of seconds contained by this `Duration` as `f64`.
+    /// 以` f64` 返回此 `Duration` 的秒数。
     ///
-    /// The returned value does include the fractional (nanosecond) part of the duration.
+    /// 返回值包含小数部分（纳秒）的时间段。
     ///
     /// # Examples
     /// ```
@@ -515,9 +496,9 @@ impl Duration {
         (self.secs as f64) + (self.nanos as f64) / (NANOS_PER_SEC as f64)
     }
 
-    /// Returns the number of seconds contained by this `Duration` as `f32`.
+    /// 以 `f32` 返回此 `Duration` 的秒数。
     ///
-    /// The returned value does include the fractional (nanosecond) part of the duration.
+    /// 返回值包含小数部分（纳秒）的时间段。
     ///
     /// # Examples
     /// ```
@@ -532,11 +513,10 @@ impl Duration {
         (self.secs as f32) + (self.nanos as f32) / (NANOS_PER_SEC as f32)
     }
 
-    /// Creates a new `Duration` from the specified number of seconds represented
-    /// as `f64`.
+    /// 用给定的` f64` 格式的秒数创建一个 `Duration`。
     ///
     /// # Panics
-    /// This constructor will panic if `secs` is not finite, negative or overflows `Duration`.
+    /// 当 `secs` 不是有限小数，或者是负数，或者溢出了`Duration` 类型时，此构造器会恐慌。
     ///
     /// # Examples
     /// ```
@@ -567,11 +547,10 @@ impl Duration {
         }
     }
 
-    /// Creates a new `Duration` from the specified number of seconds represented
-    /// as `f32`.
+    /// 用给定的 `f32` 格式的秒数创建一个 `Duration`。
     ///
     /// # Panics
-    /// This constructor will panic if `secs` is not finite, negative or overflows `Duration`.
+    /// 当 `secs` 不是有限小数，或者是负数，或者溢出了 `Duration` 类型时，此构造器会恐慌。
     ///
     /// # Examples
     /// ```
@@ -602,10 +581,10 @@ impl Duration {
         }
     }
 
-    /// Multiplies `Duration` by `f64`.
+    /// 让 `Duration` 乘以 `f64`。
     ///
     /// # Panics
-    /// This method will panic if result is not finite, negative or overflows `Duration`.
+    /// 当结果不是有限小数，或者是负数，或者溢出了 `Duration` 类型时，此方法会恐慌。
     ///
     /// # Examples
     /// ```
@@ -621,10 +600,10 @@ impl Duration {
         Duration::from_secs_f64(rhs * self.as_secs_f64())
     }
 
-    /// Multiplies `Duration` by `f32`.
+    /// 让 `Duration` 乘以 `f32`.
     ///
     /// # Panics
-    /// This method will panic if result is not finite, negative or overflows `Duration`.
+    /// 当结果不是有限小数，或者是负数，或者溢出了 `Duration` 类型时，此方法会恐慌。
     ///
     /// # Examples
     /// ```
@@ -642,10 +621,10 @@ impl Duration {
         Duration::from_secs_f32(rhs * self.as_secs_f32())
     }
 
-    /// Divide `Duration` by `f64`.
+    /// 让 `Duration` 除以 `f64`.
     ///
     /// # Panics
-    /// This method will panic if result is not finite, negative or overflows `Duration`.
+    /// 当结果不是有限小数，或者是负数，或者溢出了 `Duration` 类型时，此方法会恐慌。
     ///
     /// # Examples
     /// ```
@@ -662,10 +641,10 @@ impl Duration {
         Duration::from_secs_f64(self.as_secs_f64() / rhs)
     }
 
-    /// Divide `Duration` by `f32`.
+    /// 让 `Duration` 除以 `f32`.
     ///
     /// # Panics
-    /// This method will panic if result is not finite, negative or overflows `Duration`.
+    /// 当结果不是有限小数，或者是负数，或者溢出了 `Duration` 类型时，此方法会恐慌。
     ///
     /// # Examples
     /// ```
@@ -684,7 +663,7 @@ impl Duration {
         Duration::from_secs_f32(self.as_secs_f32() / rhs)
     }
 
-    /// Divide `Duration` by `Duration` and return `f64`.
+    /// 让 `Duration` 除以 `Duration` 然后返回 `f64`.
     ///
     /// # Examples
     /// ```
@@ -701,7 +680,7 @@ impl Duration {
         self.as_secs_f64() / rhs.as_secs_f64()
     }
 
-    /// Divide `Duration` by `Duration` and return `f32`.
+     ///让 `Duration` 除以 `Duration` 然后返回 `f32`.
     ///
     /// # Examples
     /// ```
