@@ -1,14 +1,11 @@
 //! 通过原始指针手动管理内存
 //!
-//! *[See also the pointer primitive types](../../std/primitive.pointer.html).*
+//! *[另请参见指针基本类型](../../std/primitive.pointer.html).*
 //!
-//! # Safety
+//! # 安全
 //!
-//! Many functions in this module take raw pointers as arguments and read from
-//! or write to them. For this to be safe, these pointers must be *valid*.
-//! Whether a pointer is valid depends on the operation it is used for
-//! (read or write), and the extent of the memory that is accessed (i.e.,
-//! how many bytes are read/written). Most functions use `*mut T` and `*const T`
+//! 该模块中的许多函数都将原始指针作为参数，并从中读取或写入它们。为了安全起见，这些指针必须有效。指针是否有
+//! 效取决于指针用于（读取或写入）的操作以及访问的内存范围（即，读取/写入多少字节）. Most functions use `*mut T` and `*const T`
 //! to access only a single value, in which case the documentation omits the size
 //! and implicitly assumes it to be `size_of::<T>()` bytes.
 //!
