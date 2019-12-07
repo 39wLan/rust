@@ -1,6 +1,6 @@
 //! 定长数组的 `Eq` 之类的实现. 限制到一定长度。 最终我们应该能够扩展到所有长度。
 //!
-//! *[See also the array primitive type](../../std/primitive.array.html).*
+//! *[另请参见数组原生类型](../../std/primitive.array.html).*
 
 #![stable(feature = "core_array", since = "1.36.0")]
 
@@ -19,19 +19,14 @@ mod iter;
 #[unstable(feature = "array_value_iter", issue = "65798")]
 pub use iter::IntoIter;
 
-/// Utility trait implemented only on arrays of fixed size
+/// 仅在固定大小的数组上实现的实用特质
 ///
-/// This trait can be used to implement other traits on fixed-size arrays
-/// without causing much metadata bloat.
+/// 此特质可用于在固定大小的数组上实现其他特质，而不会引起大量的元数据膨胀
 ///
-/// The trait is marked unsafe in order to restrict implementors to fixed-size
-/// arrays. User of this trait can assume that implementors have the exact
-/// layout in memory of a fixed size array (for example, for unsafe
-/// initialization).
+/// 将该特质标记为不安全，以将实现者限制为固定大小的数组。 使用此特性的用户可以假定实现者在固定大小的数
+/// 组的内存中具有准确的布局（例如，用于不安全的初始化）.
 ///
-/// Note that the traits [`AsRef`] and [`AsMut`] provide similar methods for types that
-/// may not be fixed-size arrays. Implementors should prefer those traits
-/// instead.
+/// 请注意，特质[`AsRef`] 和 [`AsMut`] 为可能不是固定大小数组的类型提供了类似的方法。 实施者应该更喜欢这些特质
 ///
 /// [`AsRef`]: ../convert/trait.AsRef.html
 /// [`AsMut`]: ../convert/trait.AsMut.html
@@ -57,7 +52,7 @@ unsafe impl<T, A: Unsize<[T]>> FixedSizeArray<T> for A {
     }
 }
 
-/// The error type returned when a conversion from a slice to an array fails.
+/// 从切片到数组的转换失败时返回的错误类型
 #[stable(feature = "try_from", since = "1.34.0")]
 #[derive(Debug, Copy, Clone)]
 pub struct TryFromSliceError(());
@@ -406,8 +401,7 @@ array_impls! {
     30 31 32
 }
 
-// The Default impls cannot be generated using the array_impls! macro because
-// they require array literals.
+// 默认impls不能使用 array_impls！宏生成，因为它们需要数组字面值
 
 macro_rules! array_impl_default {
     {$n:expr, $t:ident $($ts:ident)*} => {

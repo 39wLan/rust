@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["UNIX_EPOCH","用来创建 `SystemTime` 的一个时间锚点，也用来了解一个 `SystemTime` 落在什么时间上。"]],"struct":[["Duration","`Duration` 类型用来表示时间段，特别是用作表示系统超时"],["Instant","一种对单调不递减的时钟的量化。它是不透明的，只跟 `Duration` 在一起才有用处"],["SystemTime","一种对系统时钟的量化，在跟外部实体，例如文件系统或者其他进程通信的时候很有用。"],["SystemTimeError","一种从 `SystemTime` 的 `duration_since` 和 `elapsed` 方法返回的错误。用来表示系统时间在反方向上走了多远"]]});
